@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c820522192426cbad81abbb8b7cd9d, type: 3}
+  m_Name: UIConfig
+  m_EditorClassIdentifier: 
+  entries:
+  - TypeName: PrimaryButton
+    VisualTreeAsset:
+      m_AssetGUID: e18142c166cc38c419968607812eb916
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites:
+    - Key: Normal_Background
+      SpriteAsset: {fileID: 21300000, guid: b6ed04de130e7c0458911e8673eb61aa, type: 3}
+    - Key: Focused_Background
+      SpriteAsset: {fileID: 21300000, guid: 52dc217ab12bb3041ba093cffa809868, type: 3}
+  - TypeName: SettingsIcon
+    VisualTreeAsset:
+      m_AssetGUID: 298f98877ea60a8438c195dcdf33997e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites:
+    - Key: Normal_Background
+      SpriteAsset: {fileID: 21300000, guid: 4178644747452ff4fa00253ff8c36703, type: 3}
+    - Key: Focused_Background
+      SpriteAsset: {fileID: 21300000, guid: 7f1da15d53269604293d387a9542291c, type: 3}
+  - TypeName: EntryScreen
+    VisualTreeAsset:
+      m_AssetGUID: 5287bfe53d0943648af5d0fafd3a21c2
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: Blur
+    VisualTreeAsset:
+      m_AssetGUID: 942739deb2a20884293b8316968001d8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: LobbyView
+    VisualTreeAsset:
+      m_AssetGUID: f87655fde07828f48a455ca6db580b99
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: LoadingWidget
+    VisualTreeAsset:
+      m_AssetGUID: fa7ebb6f137111b4fa11ede5be15a651
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: AdditiveScreen
+    VisualTreeAsset:
+      m_AssetGUID: 781be478b3243a547b5273c23441463a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: SettingsWindow
+    VisualTreeAsset:
+      m_AssetGUID: 69ecae3f7284d4f43bf52bb99fd60e3a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: WarningPopup
+    VisualTreeAsset:
+      m_AssetGUID: 49a6c9fb86913ea478d02016d017cc39
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: NoticeWindow
+    VisualTreeAsset:
+      m_AssetGUID: 0a3b147cacc69ef43ae33044ee68dba0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    RequiredSprites: []
+  - TypeName: YesNoPopup
+    VisualTreeAsset:
+      m_AssetGUID: 16e6505bfb16a9649819c67601e93395
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    RequiredSprites: []
+  - TypeName: SecondaryButton
+    VisualTreeAsset:
+      m_AssetGUID: 4025029d039c59745be341667b032444
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites:
+    - Key: Normal_Background
+      SpriteAsset: {fileID: 21300000, guid: 22aa09499c0ee0a40a409e985c300877, type: 3}
+    - Key: Focused_Background
+      SpriteAsset: {fileID: 21300000, guid: 69aa36e16b3486745b71e7ee8302521a, type: 3}
+  - TypeName: SecondaryButton
+    VisualTreeAsset:
+      m_AssetGUID: 4025029d039c59745be341667b032444
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites:
+    - Key: Normal_Background
+      SpriteAsset: {fileID: 21300000, guid: 22aa09499c0ee0a40a409e985c300877, type: 3}
+    - Key: Focused_Background
+      SpriteAsset: {fileID: 21300000, guid: 69aa36e16b3486745b71e7ee8302521a, type: 3}
+  - TypeName: PlayerRow
+    VisualTreeAsset:
+      m_AssetGUID: 13531d33c51a23f4d9a5f41dc54adbfc
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: ProfilePanel
+    VisualTreeAsset:
+      m_AssetGUID: 1686d57bdef081f4a8fe3bba04479aa5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites: []
+  - TypeName: RulesPanel
+    VisualTreeAsset:
+      m_AssetGUID: 6be23a6b83bc8d441ac3d4367626ce39
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    RequiredSprites: []
+  - TypeName: AudioPanel
+    VisualTreeAsset:
+      m_AssetGUID: 646bb9f33c9567b48b24589492d8f05f
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    RequiredSprites: []
+  - TypeName: TextInput
+    VisualTreeAsset:
+      m_AssetGUID: 24abe28888337164ebdbe74e6ab79982
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    RequiredSprites:
+    - Key: TextInput_Normal
+      SpriteAsset: {fileID: 21300000, guid: 8447d264f24683f499ea21ae1907898d, type: 3}
+    - Key: TextInput_Focused
+      SpriteAsset: {fileID: 21300000, guid: c66167062c356e043b016e02cb586340, type: 3}

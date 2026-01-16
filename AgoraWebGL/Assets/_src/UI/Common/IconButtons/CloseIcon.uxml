@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Common.IconButtons.CloseIcon focusable="true" class="button-holder">
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-image: url(&apos;project://database/Assets/_src/Sprites/Common/styled_btn_close_n.png?fileID=21300000&amp;guid=39c87d0fa0ba7ec42b2ec4cfd9c75f57&amp;type=3#styled_btn_close_n&apos;); -unity-background-scale-mode: scale-and-crop; width: 150px; height: 150px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+    </_src.Code.UI.Common.IconButtons.CloseIcon>
+</ui:UXML>

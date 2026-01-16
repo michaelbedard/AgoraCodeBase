@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 024e26e936636b54981e477f4a968ce6
+  m_SerializeEntries:
+  - m_GUID: 0a3b147cacc69ef43ae33044ee68dba0
+    m_Address: Assets/_src/UI/Shared/NoticeWindow.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13531d33c51a23f4d9a5f41dc54adbfc
+    m_Address: Assets/_src/UI/Scenes/Entry/PlayerRow.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1686d57bdef081f4a8fe3bba04479aa5
+    m_Address: Assets/_src/UI/Scenes/Additive/Settings/ProfilePanel.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16e6505bfb16a9649819c67601e93395
+    m_Address: Assets/_src/UI/Popups/YesNoPopup.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18c8a42e00d483e429a219f42fec36b4
+    m_Address: Assets/_src/UI/Common/RadioButtons.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22aa09499c0ee0a40a409e985c300877
+    m_Address: Assets/_src/Sprites/Common/message_btn_n.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24abe28888337164ebdbe74e6ab79982
+    m_Address: Assets/_src/UI/Common/TextInput.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 298f98877ea60a8438c195dcdf33997e
+    m_Address: Assets/_src/UI/Common/IconButtons/SettingsIcon.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39c87d0fa0ba7ec42b2ec4cfd9c75f57
+    m_Address: Assets/_src/Sprites/Common/styled_btn_close_n.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4025029d039c59745be341667b032444
+    m_Address: Assets/_src/UI/Common/SecondaryButton.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49a6c9fb86913ea478d02016d017cc39
+    m_Address: Assets/_src/UI/Popups/WarningPopup.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 511027321d7c341418e53f82545f9df0
+    m_Address: Assets/_src/Sprites/Common/styled_btn_close_f.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5287bfe53d0943648af5d0fafd3a21c2
+    m_Address: Assets/_src/UI/Scenes/Entry/EntryScreen.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 646bb9f33c9567b48b24589492d8f05f
+    m_Address: Assets/_src/UI/Scenes/Additive/Settings/AudioPanel.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69aa36e16b3486745b71e7ee8302521a
+    m_Address: Assets/_src/Sprites/Common/message_btn_f.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69ecae3f7284d4f43bf52bb99fd60e3a
+    m_Address: Assets/_src/UI/Windows/SettingsWindow.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6be23a6b83bc8d441ac3d4367626ce39
+    m_Address: Assets/_src/UI/Scenes/Additive/Settings/RulesPanel.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7123101856ef3f14eb32b561682ca150
+    m_Address: Assets/_src/Audio/Goodhaven.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 781be478b3243a547b5273c23441463a
+    m_Address: Assets/_src/UI/Scenes/Additive/AdditiveScreen.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ad394d259dcfee4a8f6def95bc4b79e
+    m_Address: Assets/_src/Audio/Viking_Tavern.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 942739deb2a20884293b8316968001d8
+    m_Address: Assets/_src/UI/Other/Blur.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9898bfa598e1bb94287380fc33c9d753
+    m_Address: Assets/_src/UI/GlobalStyles.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c4c5f50bbdc40946bb7b083efc84563
+    m_Address: Assets/_src/UI/Common/Title.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9d6a5e77266d22499880edeac5eae5b
+    m_Address: Assets/_src/UI/Common/SubTitle.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e18142c166cc38c419968607812eb916
+    m_Address: Assets/_src/UI/Common/PrimaryButton.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f10c30ee12c2d8f48840dbbf98386865
+    m_Address: Assets/_src/UI/Common/CircularButton.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f87655fde07828f48a455ca6db580b99
+    m_Address: Assets/_src/UI/Scenes/Entry/LobbyView.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa7ebb6f137111b4fa11ede5be15a651
+    m_Address: Assets/_src/UI/Common/LoadingWidget.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 169bee75833748344a7f8eb401a1ebee, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 719d07c8bca15a3489b62d014f9d6458, type: 2}
+    - {fileID: 11400000, guid: 3f933415f10f25143b71f00a0def2fdf, type: 2}

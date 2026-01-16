@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Common.SubTitle focusable="true" class="button-holder">
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" focusable="false" class="text-large text" style="background-image: url(&apos;project://database/Assets/_src/Sprites/Common/secondary_title.png?fileID=21300000&amp;guid=fd91fe2a375886d428ed98239b218655&amp;type=3#secondary_title&apos;); -unity-background-scale-mode: scale-and-crop; width: 100%; height: 60px; -unity-text-align: middle-center; color: rgb(255, 255, 255); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+    </_src.Code.UI.Common.SubTitle>
+</ui:UXML>

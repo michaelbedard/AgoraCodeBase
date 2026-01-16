@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="SettingsIcon" src="project://database/Assets/_src/UI/Common/IconButtons/SettingsIcon.uxml?fileID=9197481963319205126&amp;guid=298f98877ea60a8438c195dcdf33997e&amp;type=3#SettingsIcon" />
+    <_src.Code.UI.Scenes.Additive.AdditiveScreen>
+        <ui:Instance template="SettingsIcon" name="SettingsIcon" style="position: absolute; top: 30px; right: 30px;" />
+    </_src.Code.UI.Scenes.Additive.AdditiveScreen>
+</ui:UXML>

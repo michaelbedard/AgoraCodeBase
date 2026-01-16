@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="CloseIcon" src="project://database/Assets/_src/UI/Common/IconButtons/CloseIcon.uxml?fileID=9197481963319205126&amp;guid=8f1a004a0bb45a8479eb95185575602b&amp;type=3#CloseIcon" />
+    <ui:Template name="Title" src="project://database/Assets/_src/UI/Common/Title.uxml?fileID=9197481963319205126&amp;guid=9c4c5f50bbdc40946bb7b083efc84563&amp;type=3#Title" />
+    <ui:Template name="SecondaryButton" src="project://database/Assets/_src/UI/Common/SecondaryButton.uxml?fileID=9197481963319205126&amp;guid=4025029d039c59745be341667b032444&amp;type=3#SecondaryButton" />
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Scenes.Additive.SettingsWindow.SettingsWindow name="SettingsWindow" focusable="true" picking-mode="Ignore" class="popup">
+        <ui:Instance template="CloseIcon" name="CloseIcon" style="position: absolute; right: 70px; top: auto; bottom: 70px;" />
+        <ui:VisualElement name="Window" focusable="true" style="flex-grow: 0; width: 70%; height: 85%; background-color: rgb(151, 151, 151); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-image: url(&quot;project://database/Assets/_src/Sprites/Panels/popup_bg_03.png?fileID=21300000&amp;guid=2b87e69b1a02a004d805b4599d641474&amp;type=3#popup_bg_03&quot;);">
+            <ui:VisualElement name="Content" class="window" style="flex-grow: 0; width: 100%; height: 100%; flex-direction: row; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-items: center; justify-content: center;">
+                <ui:VisualElement name="PanelContainer" style="flex-grow: 0; flex-shrink: 0; width: 95%; height: 90%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Title" style="flex-grow: 1; position: absolute; width: 100%; min-width: auto; min-height: auto; top: -30px; align-items: center;">
+                <ui:Instance template="Title" name="Title" tabindex="0" style="width: 60%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Buttons" class="fr" style="flex-grow: 0; padding-right: 0; flex-shrink: 0; align-items: center; width: 100%; padding-top: 0; padding-bottom: 0; padding-left: 0; justify-content: center; position: absolute; bottom: -17px; flex-direction: row;">
+                <ui:Instance template="SecondaryButton" name="ProfileBtn" class="settings-btn btn-normal" />
+                <ui:Instance template="SecondaryButton" name="AudioBtn" class="settings-btn btn-normal" />
+                <ui:Instance template="SecondaryButton" name="RulesBtn" class="settings-btn btn-normal" style="display: flex;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </_src.Code.UI.Scenes.Additive.SettingsWindow.SettingsWindow>
+</ui:UXML>

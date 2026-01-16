@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Common.IconButtons.SettingsIcon style="align-items: center; justify-content: center;">
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-image: url(&quot;project://database/Assets/_src/Sprites/Icons/Buttons/btn_setting_n.png?fileID=21300000&amp;guid=4178644747452ff4fa00253ff8c36703&amp;type=3#btn_setting_n&quot;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0); width: 70px; height: 70px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+    </_src.Code.UI.Common.IconButtons.SettingsIcon>
+</ui:UXML>

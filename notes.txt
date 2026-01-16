@@ -1,0 +1,8 @@
+To make a full test run :
+
+1) build Unity project and copy-paste the build inside /AgoraActivity/static/WebGL
+2) Run the following inside the terminal and copy-paste resulting URL into discord dev portal:
+
+npx cloudflared tunnel --url https://localhost:5173 --no-tls-verify
+
+3) launch Agora on discord!

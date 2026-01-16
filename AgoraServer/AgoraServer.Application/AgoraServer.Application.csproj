@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\AgoraServer.Domain\AgoraServer.Domain.csproj" />
+        <ProjectReference Include="..\AgoraServer.Infrastructure\AgoraServer.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
+        <PackageReference Include="MediatR" Version="12.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Serilog" Version="4.0.2-dev-02224" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NJsonSchema" Version="10.4.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Handlers\Game\JoinTable\**" />
+      <Compile Remove="Handlers\Game\LeaveTable\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Handlers\Game\JoinTable\**" />
+      <EmbeddedResource Remove="Handlers\Game\LeaveTable\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Handlers\Game\JoinTable\**" />
+      <None Remove="Handlers\Game\LeaveTable\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Handlers\Utility\" />
+      <Folder Include="Tasks\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Agora.Core">
+        <HintPath>..\..\AgoraShared\Agora.Core\bin\Debug\netstandard2.0\Agora.Core.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Agora.Engine">
+            <HintPath>..\..\AgoraShared\Agora.Engine\bin\Debug\net8.0\Agora.Engine.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>

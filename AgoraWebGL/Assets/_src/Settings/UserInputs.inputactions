@@ -1,0 +1,74 @@
+{
+    "name": "UserInputs",
+    "maps": [
+        {
+            "name": "GamePlay",
+            "id": "03747cae-bf8c-407d-8616-ba443751cc6b",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "e8aa4334-4977-4877-94aa-c96d9eea88b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "7ab3c439-60d6-449a-9f21-e2fd7ca4af4d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "8db545fa-456b-44ab-9cd5-afcbdd8b1a89",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "34892048-dd71-4c64-a639-8d85e0ee7756",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb4a9870-c131-43e6-849a-0b75e17cacfa",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eac4eacc-2acb-47d8-b006-3e05e651a907",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

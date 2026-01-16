@@ -1,0 +1,171 @@
+:root {
+    --label-font-size-small: 24px;
+    --label-font-size-medium: 36px;
+    --label-font-size-large: 48px;
+    --label-color: rgb(255, 255, 255);
+    --agora-font: url("project://database/Assets/_src/Fonts/Vinque.otf?fileID=12800000&guid=43906f68e8c4a364ea598bcc0ce87182&type=3#Vinque");
+    --agora-font-definition: url("project://database/Assets/_src/Fonts/Vinque.asset?fileID=11400000&guid=6f9a988404509a84fa17cc06036966f9&type=2#Vinque");
+}
+
+.panel {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex-grow: 0;
+    background-color: rgba(235, 194, 222, 0);
+}
+
+.popup {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(72, 72, 72, 0);
+    background-image: none;
+    -unity-background-scale-mode: scale-to-fit;
+    flex-grow: 1;
+    -unity-background-image-tint-color: rgba(32, 32, 32, 0);
+}
+
+.blur {
+    position: absolute;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-image: url("project://database/Assets/_src/Sprites/Common/screen_dimmed.png?fileID=21300000&guid=ae9c1ac334fc8ea4a8a3048a680c7256&type=3#screen_dimmed");
+    -unity-background-image-tint-color: rgb(0, 0, 0);
+}
+
+.settings-scroll-view {
+    margin-top: 75px;
+}
+
+.button-holder {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-btn {
+    width: 310px;
+    margin-right: 50px;
+    margin-left: 50px;
+    height: 120px;
+}
+
+.btn-large {
+    height: 120px;
+    width: 300px;
+}
+
+.btn-normal {
+    height: 80px;
+}
+
+.text {
+    color: var(--label-color);
+    -unity-font: var(--agora-font);
+    -unity-font-definition: var(--agora-font-definition);
+    font-size: 36px;
+}
+
+.text.text-small {
+    font-size: var(--label-font-size-small);
+}
+
+.text.text-large {
+    font-size: var(--label-font-size-large);
+}
+
+.unity-base-text-field__input {
+    background-image: url("project://database/Assets/_src/Sprites/Common/txt_input_n.png?fileID=21300000&guid=8447d264f24683f499ea21ae1907898d&type=3#txt_input_n");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-scale-mode: scale-and-crop;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-text-align: middle-center;
+    display: flex;
+    flex-shrink: 0;
+    width: 203px;
+    flex-grow: 1;
+    color: var(--label-color);
+    font-size: var(--label-font-size-medium);
+    -unity-font: var(--agora-font);
+    -unity-font-definition: var(--agora-font-definition);
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.unity-base-text-field__label {
+    display: flex;
+    -unity-text-align: middle-center;
+    flex-shrink: 1;
+    width: 300px;
+    flex-grow: 0;
+    color: var(--label-color);
+    font-size: var(--label-font-size-medium);
+    -unity-font: var(--agora-font);
+    -unity-font-definition: var(--agora-font-definition);
+}
+
+.unity-slider__label {
+    padding-right: 91px;
+    width: 300px;
+    -unity-text-align: upper-left;
+    white-space: normal;
+    text-overflow: ellipsis;
+    color: var(--label-color);
+    font-size: var(--label-font-size-medium);
+}
+
+.unity-radio-button__checkmark-background {
+    background-image: url("project://database/Assets/_src/Sprites/Common/radio_lozenge_off.png?fileID=21300000&guid=602dac56e6a94f44e81bb54e0dc334b0&type=3#radio_lozenge_off");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.unity-radio-button__checkmark {
+    background-image: url("project://database/Assets/_src/Sprites/Common/radio_lozenge_on.png?fileID=21300000&guid=fa7ecfac0c66038418dcf14c43a3ebdc&type=3#radio_lozenge_on");
+    -unity-background-scale-mode: scale-and-crop;
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+    margin-top: -3px;
+}
+
+.unity-radio-button-group__container {
+    align-items: center;
+    flex-grow: 0;
+    flex-direction: row;
+    justify-content: center;
+    color: var(--label-color);
+    font-size: var(--label-font-size-medium);
+    -unity-font: var(--agora-font);
+    -unity-font-definition: var(--agora-font-definition);
+}
+
+.unity-base-field__label {
+    width: 300px;
+    -unity-text-align: upper-center;
+    color: var(--label-color);
+    font-size: var(--label-font-size-medium);
+    -unity-font: var(--agora-font);
+    -unity-font-definition: var(--agora-font-definition);
+}
+
+.text-large {
+}

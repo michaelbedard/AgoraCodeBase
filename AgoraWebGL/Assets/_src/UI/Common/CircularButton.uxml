@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Common.CircularButton focusable="true" class="button-holder">
+        <ui:Button text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="background-image: url(&apos;project://database/Assets/_src/Sprites/Common/circular_btn_n.png?fileID=21300000&amp;guid=59abf03546316e54daa23b83fc179919&amp;type=3#circular_btn_n&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 100%; height: 100%; align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" style="flex-grow: 1; -unity-text-align: middle-center;" />
+            <ui:VisualElement name="Icon" picking-mode="Ignore" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/_src/Sprites/Icons/icon_scroll.png?fileID=21300000&amp;guid=d8d7bcbf8a398c143b74393454b1bc44&amp;type=3#icon_scroll&apos;); height: 55%; width: 55%; position: absolute; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-background-scale-mode: scale-to-fit; display: flex;" />
+        </ui:Button>
+    </_src.Code.UI.Common.CircularButton>
+</ui:UXML>

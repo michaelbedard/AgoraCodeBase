@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="SubTitle" src="project://database/Assets/_src/UI/Common/SubTitle.uxml?fileID=9197481963319205126&amp;guid=d9d6a5e77266d22499880edeac5eae5b&amp;type=3#SubTitle" />
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Scenes.Additive.SettingsWindow.AudioPanel name="AudioSubTitle" style="padding: 50px;">
+        <ui:Instance template="SubTitle" name="AudioSubTitle" style="position: relative; width: 600px;" />
+        <ui:VisualElement class="text-large text" style="flex-grow: 1; padding-top: 50px; width: 90%;">
+            <ui:Slider label="Background Music" high-value="100" name="MusicSlider" page-size="0.94" style="white-space: normal; text-overflow: clip;" />
+            <ui:Slider label="Sound Effects" high-value="100" name="SfxSlider" />
+        </ui:VisualElement>
+    </_src.Code.UI.Scenes.Additive.SettingsWindow.AudioPanel>
+</ui:UXML>

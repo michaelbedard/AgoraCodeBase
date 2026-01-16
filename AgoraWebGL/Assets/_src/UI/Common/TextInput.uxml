@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Common.TextInput focusable="true" name="TextInput">
+        <ui:TextField picking-mode="Ignore" binding-path="ewfewfefewf" label="Creator Code" name="TextField" keyboard-type="Default" style="background-image: none; -unity-background-scale-mode: stretch-to-fill; -unity-background-image-tint-color: rgb(255, 255, 255); display: flex; height: 60px;" />
+    </_src.Code.UI.Common.TextInput>
+</ui:UXML>
