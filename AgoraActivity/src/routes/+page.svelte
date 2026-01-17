@@ -26,12 +26,13 @@
         });
 
         console.log("[Svelte] Authorized!");
+
+        initializeUnity();
+
         return { code, channelId: sdk.channelId };
     }
 
     onMount(() => {
-        initializeUnity();
-
         const queryParams = $page.url.searchParams;
         const isDiscordEnvironment = queryParams.has('frame_id'); // Intelligent check
 
@@ -47,6 +48,8 @@
                     code: "mock_code_12345",
                     channelId: "mock_channel_001"
                 });
+
+                initializeUnity();
             }
         }
 
