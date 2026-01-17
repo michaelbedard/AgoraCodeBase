@@ -47,8 +47,8 @@
                 // Mock data for browser
                 console.warn("Running in browser mode. Using mock auth.");
                 globalAuthPromise = Promise.resolve({
-                    code: "mock_oauth_code",
-                    channelId: "mock_channel_id"
+                    code: "mock_thomas",
+                    channelId: "002"
                 });
             }
         }
