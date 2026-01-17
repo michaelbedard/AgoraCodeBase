@@ -1,0 +1,3 @@
+<linker>
+    <assembly fullname="Agora.Core" preserve="all" />
+</linker>

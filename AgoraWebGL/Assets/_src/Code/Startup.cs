@@ -80,7 +80,11 @@ namespace _src.Code
 
         private async Task Login()
         {
+            #if UNITY_EDITOR
+            
             await _appLogic.Login("001", "mock_jade");
+            
+            #endif
         }
     }
 }
