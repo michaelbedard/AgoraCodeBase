@@ -51,27 +51,23 @@
         window.dispatchDiscordData = async () => {
             console.log("[Svelte] Unity requested Discord Data.");
 
-            if (window.unityInstance) {
-                window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", "TEST");
-            }
+            try {
+                if (!globalAuthPromise) return;
+                const { code, channelId } = await globalAuthPromise;
 
-            // try {
-            //     if (!globalAuthPromise) return;
-            //     const { code, channelId } = await globalAuthPromise;
-            //
-            //     const payload = JSON.stringify({ channelId, authCode: code });
-            //
-            //     if (window.unityInstance) {
-            //         window.unityInstance.SendMessage("DiscordBridge", "OnDiscordDataReceived", payload);
-            //     }
-            // } catch (error: any) {
-            //     console.error("[Svelte] Auth Error during dispatch:", error);
-            //
-            //     if (window.unityInstance) {
-            //         const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
-            //         window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
-            //     }
-            // }
+                const payload = JSON.stringify({ channelId, authCode: code });
+
+                if (window.unityInstance) {
+                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordDataReceived", payload);
+                }
+            } catch (error: any) {
+                console.error("[Svelte] Auth Error during dispatch:", error);
+
+                if (window.unityInstance) {
+                    const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
+                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
+                }
+            }
         };
 
         // Initialize Discord Helper ONLY if in Discord
