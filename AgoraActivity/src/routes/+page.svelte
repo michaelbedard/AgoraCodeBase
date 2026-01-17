@@ -28,11 +28,13 @@
         script.async = true;
 
         script.onload = () => {
+            const cacheBuster = "?v=" + new Date().getTime();
+
             // @ts-ignore
             createUnityInstance(unityCanvas, {
-                dataUrl: `${config.BUILD_PATH}/WebGL.data${config.COMPRESSION}`,
-                frameworkUrl: `${config.BUILD_PATH}/WebGL.framework.js${config.COMPRESSION}`,
-                codeUrl: `${config.BUILD_PATH}/WebGL.wasm${config.COMPRESSION}`,
+                dataUrl: `${config.BUILD_PATH}/WebGL.data${config.COMPRESSION}` + cacheBuster,
+                frameworkUrl: `${config.BUILD_PATH}/WebGL.framework.js${config.COMPRESSION}` + cacheBuster,
+                codeUrl: `${config.BUILD_PATH}/WebGL.wasm${config.COMPRESSION}` + cacheBuster,
                 streamingAssetsUrl: "StreamingAssets",
                 companyName: config.COMPANY_NAME,
                 productName: config.PRODUCT_NAME,
