@@ -10,9 +10,9 @@
     import { PUBLIC_DISCORD_CLIENT_ID } from '$env/static/public';
     import { page } from "$app/stores";
 
-    let discordSdk: DiscordSDK;
     let unityCanvas: any;
-    let discordHelper: DiscordHelper | null = null;
+    // let discordSdk: DiscordSDK;
+    // let discordHelper: DiscordHelper | null = null;
 
     async function startDiscordAuth(sdk: DiscordSDK) {
         await sdk.ready();
@@ -33,68 +33,70 @@
     }
 
     onMount(() => {
-        const queryParams = $page.url.searchParams;
-        const isDiscordEnvironment = queryParams.has('frame_id'); // Intelligent check
+        initializeUnity(); // for testing
 
-        if (!globalAuthPromise) {
-            if (isDiscordEnvironment) {
-                // --- REAL DISCORD MODE ---
-                console.log("[Svelte] Detected Discord Environment.");
-                discordSdk = new DiscordSDK(PUBLIC_DISCORD_CLIENT_ID);
-                globalAuthPromise = startDiscordAuth(discordSdk);
-            } else {
-                console.warn("[Svelte] No frame_id found. Running in BROWSER MODE (Mock Auth).");
-                globalAuthPromise = Promise.resolve({
-                    code: "mock_code_12345",
-                    channelId: "mock_channel_001"
-                });
-
-                initializeUnity();
-            }
-        }
+        // const queryParams = $page.url.searchParams;
+        // const isDiscordEnvironment = queryParams.has('frame_id'); // Intelligent check
+        //
+        // if (!globalAuthPromise) {
+        //     if (isDiscordEnvironment) {
+        //         // --- REAL DISCORD MODE ---
+        //         console.log("[Svelte] Detected Discord Environment.");
+        //         discordSdk = new DiscordSDK(PUBLIC_DISCORD_CLIENT_ID);
+        //         globalAuthPromise = startDiscordAuth(discordSdk);
+        //     } else {
+        //         console.warn("[Svelte] No frame_id found. Running in BROWSER MODE (Mock Auth).");
+        //         globalAuthPromise = Promise.resolve({
+        //             code: "mock_code_12345",
+        //             channelId: "mock_channel_001"
+        //         });
+        //
+        //         initializeUnity();
+        //     }
+        // }
 
         window.dispatchDiscordData = async () => {
             console.log("[Svelte] Unity requested Discord Data.");
 
-            try {
-                if (!globalAuthPromise) return;
-                const { code, channelId } = await globalAuthPromise;
-
-                const payload = JSON.stringify({ channelId, authCode: code });
-
-                if (window.unityInstance) {
-                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordDataReceived", payload);
-                }
-            } catch (error: any) {
-                console.error("[Svelte] Auth Error during dispatch:", error);
-
-                if (window.unityInstance) {
-                    const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
-                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
-                }
-            }
+            // try {
+            //     if (!globalAuthPromise) return;
+            //     const { code, channelId } = await globalAuthPromise;
+            //
+            //     const payload = JSON.stringify({ channelId, authCode: code });
+            //
+            //     if (window.unityInstance) {
+            //         window.unityInstance.SendMessage("DiscordBridge", "OnDiscordDataReceived", payload);
+            //     }
+            // } catch (error: any) {
+            //     console.error("[Svelte] Auth Error during dispatch:", error);
+            //
+            //     if (window.unityInstance) {
+            //         const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
+            //         window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
+            //     }
+            // }
         };
 
-        // Initialize Discord Helper ONLY if in Discord
-        if (isDiscordEnvironment) {
-            if (window.location.hostname.includes("discordsays.com")) {
-                setupProxy();
-            }
-
-            try {
-                discordHelper = new DiscordHelper();
-                discordHelper.setupParentIframe();
-            } catch (error: any) {
-                console.error("[Svelte] Failed to setup Discord Helper:", error);
-
-                if (window.unityInstance) {
-                    const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
-                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
-                }
-            }
-        } else {
-            console.log("[Svelte] Skipping DiscordHelper setup (Browser Mode).");
-        }
+        // // Initialize Discord Helper ONLY if in Discord
+        // if (isDiscordEnvironment) {
+        //     if (window.location.hostname.includes("discordsays.com")) {
+        //         setupProxy();
+        //     }
+        //
+        //     try {
+        //         discordHelper = new DiscordHelper();
+        //         discordHelper.setupParentIframe();
+        //     } catch (error: any) {
+        //         console.error("[Svelte] Failed to setup Discord Helper:", error);
+        //
+        //         if (window.unityInstance) {
+        //             const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
+        //             window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
+        //         }
+        //     }
+        // } else {
+        //     console.log("[Svelte] Skipping DiscordHelper setup (Browser Mode).");
+        // }
     });
 
     function setupProxy() {
