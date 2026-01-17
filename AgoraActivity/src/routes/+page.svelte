@@ -55,6 +55,12 @@
         document.body.appendChild(script);
     }
 
+    onMount(() => {
+        isGameStarted = true;
+        initializeUnity();
+    })
+
+
     function handleStartClick() {
         isGameStarted = true;
         initializeUnity();
@@ -68,13 +74,13 @@
             tabindex="-1"
     ></canvas>
 
-    {#if !isGameStarted}
-        <div class="overlay">
-            <button class="start-btn" on:click={handleStartClick}>
-                Start Game
-            </button>
-        </div>
-    {/if}
+    <!--{#if !isGameStarted}-->
+    <!--    <div class="overlay">-->
+    <!--        <button class="start-btn" on:click={handleStartClick}>-->
+    <!--            Start Game-->
+    <!--        </button>-->
+    <!--    </div>-->
+    <!--{/if}-->
 
     {#if debugError}
         <div class="error-console">
