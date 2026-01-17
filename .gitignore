@@ -136,3 +136,11 @@ build/
 # 2. ...BUT explicitly allow the AgoraActivity static build folder
 !AgoraActivity/static/Build/
 !AgoraActivity/static/Build/**
+
+# 3. Explicitly allow Unity Addressables (StreamingAssets)
+!AgoraActivity/static/StreamingAssets/
+!AgoraActivity/static/StreamingAssets/**
+
+# 4. Explicitly allow the debugger config
+!AgoraActivity/static/.well-known/
+!AgoraActivity/static/.well-known/**
