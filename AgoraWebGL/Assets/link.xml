@@ -1,3 +1,4 @@
 <linker>
+    <assembly fullname="Newtonsoft.Json" preserve="all" />
     <assembly fullname="Agora.Core" preserve="all" />
 </linker>

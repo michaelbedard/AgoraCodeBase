@@ -5,6 +5,7 @@ using _src.Code.Core.Actors;
 using _src.Code.Core.Interfaces.Services;
 using _src.Code.Core.Interfaces.UI;
 using _src.Code.UI.Common;
+using _src.Code.UI.Shared;
 using _src.Settings;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -261,6 +262,16 @@ namespace _src.Code.App.Services
                     callback?.Invoke();
                 });
             }
+        }
+
+        public async Task ShowWarning(string message)
+        {
+            var warning = await Create<WarningPopup>();
+            warning.Title.Label.text = "Warning!";
+            warning.Message.text = message;
+            warning.Button.Label.text = "Ok";
+            
+            warning.AddToRootElement();
         }
     }
 }

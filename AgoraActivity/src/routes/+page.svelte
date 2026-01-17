@@ -12,7 +12,7 @@
 
     let discordSdk: DiscordSDK;
     let unityCanvas: any;
-    let discordHelper: DiscordHelper | null = null; // Allow null for browser mode
+    let discordHelper: DiscordHelper | null = null;
 
     async function startDiscordAuth(sdk: DiscordSDK) {
         await sdk.ready();
@@ -50,32 +50,46 @@
 
         window.dispatchDiscordData = async () => {
             console.log("[Svelte] Unity requested Discord Data.");
-            try {
-                if (!globalAuthPromise) return;
-                const { code, channelId } = await globalAuthPromise;
 
-                const payload = JSON.stringify({ channelId, authCode: code });
-
-                if (window.unityInstance) {
-                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordDataReceived", payload);
-                }
-            } catch (error: any) {
-                console.error("[Svelte] Auth Error during dispatch:", error);
+            if (window.unityInstance) {
+                window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", "TEST");
             }
+
+            // try {
+            //     if (!globalAuthPromise) return;
+            //     const { code, channelId } = await globalAuthPromise;
+            //
+            //     const payload = JSON.stringify({ channelId, authCode: code });
+            //
+            //     if (window.unityInstance) {
+            //         window.unityInstance.SendMessage("DiscordBridge", "OnDiscordDataReceived", payload);
+            //     }
+            // } catch (error: any) {
+            //     console.error("[Svelte] Auth Error during dispatch:", error);
+            //
+            //     if (window.unityInstance) {
+            //         const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
+            //         window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
+            //     }
+            // }
         };
 
         // Initialize Discord Helper ONLY if in Discord
         if (isDiscordEnvironment) {
-            // Only proxy requests if we are actually on the Discord proxy domain
             if (window.location.hostname.includes("discordsays.com")) {
                 setupProxy();
             }
 
             try {
                 discordHelper = new DiscordHelper();
-                discordHelper.setupParentIframe(); // This is what was crashing!
-            } catch (e) {
-                console.error("[Svelte] Failed to setup Discord Helper:", e);
+                discordHelper.setupParentIframe();
+            } catch (error: any) {
+                console.error("[Svelte] Failed to setup Discord Helper:", error);
+
+                if (window.unityInstance) {
+                    const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
+                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
+                }
             }
         } else {
             console.log("[Svelte] Skipping DiscordHelper setup (Browser Mode).");
@@ -89,7 +103,6 @@
         const originalFetch = window.fetch;
         window.fetch = (input, init) => {
             const url = typeof input === 'string' ? input : input instanceof Request ? input.url : '';
-            // Ignore Unity files and existing proxies
             if (url.includes("StreamingAssets") || url.includes("/Build/") ||
                 url.includes(".wasm") || url.includes(".data") || url.includes(".proxy/")) {
                 return originalFetch(input, init);
@@ -119,8 +132,13 @@
             }).then((instance: any) => {
                 window.unityInstance = instance;
                 console.log("[Svelte] Unity Instance Loaded.");
-            }).catch((err: any) => {
-                console.error("[Svelte] Unity Load Error:", err);
+            }).catch((error: any) => {
+                console.error("[Svelte] Unity Load Error:", error);
+
+                if (window.unityInstance) {
+                    const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
+                    window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
+                }
             });
         };
 

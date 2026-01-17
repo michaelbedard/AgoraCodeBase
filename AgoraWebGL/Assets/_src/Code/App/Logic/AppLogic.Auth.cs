@@ -10,14 +10,6 @@ namespace _src.Code.App.Logic
         {
             _clientDataService.ChannelId = currentChannelId;
             
-            var p = await _visualElementService.GetOrCreate<WarningPopup>();
-            p.Title.Label.text = "Inside Login func!";
-            p.Message.text = _clientDataService.ChannelId + "\n" + authCode;
-            p.Button.Label.text = "Ok";
-            p.Show();
-
-            return;
-            
             var result = await _authHttpProxy.Login(new LoginPayload()
             {
                 OAuthCode = authCode,
@@ -33,15 +25,15 @@ namespace _src.Code.App.Logic
                 _clientDataService.Pronouns = user.Pronouns;
                 
                 // Connect to hub
-                var hubConnectionSuccess = await _hubProxy.ConnectAsync();
-                if (!hubConnectionSuccess)
-                {
-                    var warning = await _visualElementService.GetOrCreate<WarningPopup>();
-                    warning.Title.Label.text = "Hub Connection failed!";
-                    warning.Button.Label.text = "Ok";
-                    warning.Show();
-                    return;
-                }
+                // var hubConnectionSuccess = await _hubProxy.ConnectAsync();
+                // if (!hubConnectionSuccess)
+                // {
+                //     var warning = await _visualElementService.GetOrCreate<WarningPopup>();
+                //     warning.Title.Label.text = "Hub Connection failed!";
+                //     warning.Button.Label.text = "Ok";
+                //     warning.Show();
+                //     return;
+                // }
                 
                 var popup = await _visualElementService.GetOrCreate<WarningPopup>();
                 popup.Title.Label.text = "Login success!";

@@ -25,10 +25,7 @@ namespace _src.Code.Network
         }
         
         protected async Task<HttpResponseResult<T>> SendHttpRequest<T>(string url, string method, object data)
-        { 
-            UnityWebRequest request = null;
-            string jsonData = null;
-
+        {
             var userId = _clientDataService.Id;
             if (!string.IsNullOrEmpty(userId))
             {
@@ -36,12 +33,10 @@ namespace _src.Code.Network
                 url += $"{separator}userId={UnityWebRequest.EscapeURL(userId)}";
             }
 
+            using UnityWebRequest request = new UnityWebRequest(url, method);
             try
             {
-                // 3. Create request with the modified URL
-                request = new UnityWebRequest(url, method);
-                
-                jsonData = data != null ? JsonConvert.SerializeObject(data) : null;
+                var jsonData = data != null ? JsonConvert.SerializeObject(data) : null;
 
                 if (!string.IsNullOrEmpty(jsonData))
                 {
@@ -55,43 +50,39 @@ namespace _src.Code.Network
                 var operation = request.SendWebRequest();
 
                 while (!operation.isDone)
-                    await Task.Yield(); 
+                {
+                    await Task.Yield();
+                }
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
-                    var responseText = request.downloadHandler.text;
-
-                    if (string.IsNullOrEmpty(responseText))
-                    {
-                        return new HttpResponseResult<T>
-                        {
-                            IsSuccess = true,
-                            Message = "Request succeeded, but response was empty.",
-                            Data = default
-                        };
-                    }
-
+                    // ... (Success logic is fine) ...
                     return new HttpResponseResult<T>
                     {
                         IsSuccess = true,
                         Message = "Request succeeded.",
-                        Data = JsonConvert.DeserializeObject<T>(responseText),
+                        Data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text),
                     };
                 }
                 else
                 {
-                    await LogErrorDetails(request, url, method, jsonData);
+                    // 3. LOGGING FIX: Do NOT pass the full 'Exception' if it contains SocketExceptions
+                    // Just log the text.
+                    Debug.LogError($"[HttpError] {url} : {request.error} | {request.downloadHandler?.text}");
+                        
                     return new HttpResponseResult<T>
                     {
                         IsSuccess = false,
-                        Message = $"HTTP Request failed: {request.downloadHandler?.text}",
+                        Message = $"HTTP Request failed: {request.error}", // Use request.error, safest for WebGL
                         Data = default
                     };
                 }
             }
             catch (Exception ex)
             {
-                await LogErrorDetails(request, url, method, jsonData, ex);
+                // 4. EXCEPTION FIX: Accessing ex.StackTrace on WebGL sometimes fails if symbols are stripped
+                Debug.LogError($"[HttpException] {ex.Message}");
+                    
                 return new HttpResponseResult<T>
                 {
                     IsSuccess = false,

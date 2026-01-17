@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using _src.Code.Core.Interfaces.Handlers;
-using Newtonsoft.Json;
+using _src.Code.Core.Interfaces.Services;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +17,7 @@ namespace _src.Code.Core.Utility
     public class DiscordBridge : MonoBehaviour
     {
         [Inject] private IAppLogic _appLogic;
+        [Inject] private IVisualElementService _visualElementService;
         
         // --- 1. Define the external JS function ---
         [DllImport("__Internal")]
@@ -53,6 +54,12 @@ namespace _src.Code.Core.Utility
             {
                 Debug.LogError($"[DiscordBridge] Parse Error: {e.Message}");
             }
+        }
+        
+        public async void OnDiscordError(string errorMessage)
+        {
+            Debug.LogError($"[DiscordBridge] JS ERROR RECEIVED: {errorMessage}");
+            await _visualElementService.ShowWarning(errorMessage);
         }
     }
 }

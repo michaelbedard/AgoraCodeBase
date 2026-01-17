@@ -20,5 +20,6 @@ namespace _src.Code.Core.Interfaces.Services
         bool AddToRootElement(VisualElement visualElement, bool useAdditive = false);
         void Show(VisualElement visualElement);
         void Hide(VisualElement visualElement, Action callback = null);
+        Task ShowWarning(string message);
     }
 }
