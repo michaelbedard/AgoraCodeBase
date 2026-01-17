@@ -12,14 +12,12 @@
 
     let discordSdk: DiscordSDK;
     let unityCanvas: any;
-    let discordHelper: DiscordHelper;
+    let discordHelper: DiscordHelper | null = null; // Allow null for browser mode
 
     async function startDiscordAuth(sdk: DiscordSDK) {
         await sdk.ready();
-
         console.log("[Svelte] Authorizing...");
 
-        // We only ever hit this line ONCE per page load now.
         const { code } = await sdk.commands.authorize({
             client_id: env.PUBLIC_DISCORD_CLIENT_ID,
             response_type: "code",
@@ -28,80 +26,77 @@
         });
 
         console.log("[Svelte] Authorized!");
-
-        return {
-            code,
-            channelId: sdk.channelId
-        };
+        return { code, channelId: sdk.channelId };
     }
 
     onMount(() => {
         const queryParams = $page.url.searchParams;
+        const isDiscordEnvironment = queryParams.has('frame_id'); // Intelligent check
 
         if (!globalAuthPromise) {
-            if (queryParams.has('frame_id')) {
-                // Initialize the SDK and start the one-time auth
+            if (isDiscordEnvironment) {
+                // --- REAL DISCORD MODE ---
+                console.log("[Svelte] Detected Discord Environment.");
                 discordSdk = new DiscordSDK(env.PUBLIC_DISCORD_CLIENT_ID);
                 globalAuthPromise = startDiscordAuth(discordSdk);
             } else {
-                // Mock data for browser
-                console.warn("Running in browser mode. Using mock auth.");
+                console.warn("[Svelte] No frame_id found. Running in BROWSER MODE (Mock Auth).");
                 globalAuthPromise = Promise.resolve({
-                    code: "mock_thomas",
-                    channelId: "002"
+                    code: "mock_code_12345",
+                    channelId: "mock_channel_001"
                 });
             }
         }
 
         window.dispatchDiscordData = async () => {
             console.log("[Svelte] Unity requested Discord Data.");
-
             try {
                 if (!globalAuthPromise) return;
-
                 const { code, channelId } = await globalAuthPromise;
 
-                const payload = JSON.stringify({
-                    channelId: channelId,
-                    authCode: code
-                });
+                const payload = JSON.stringify({ channelId, authCode: code });
 
                 if (window.unityInstance) {
                     window.unityInstance.SendMessage("DiscordBridge", "OnDiscordDataReceived", payload);
                 }
             } catch (error: any) {
-                console.error("[Svelte] Auth Error:", error);
+                console.error("[Svelte] Auth Error during dispatch:", error);
             }
         };
 
-        // Initialize Helper and Unity
-        if (window.location.hostname.includes("discordsays.com")) {
-            const originalFetch = window.fetch;
+        // Initialize Discord Helper ONLY if in Discord
+        if (isDiscordEnvironment) {
+            // Only proxy requests if we are actually on the Discord proxy domain
+            if (window.location.hostname.includes("discordsays.com")) {
+                setupProxy();
+            }
 
-            window.fetch = (input, init) => {
-                // 1. Get the URL string safely
-                const url = typeof input === 'string' ? input : input instanceof Request ? input.url : '';
-
-                // 2. IGNORE Unity files (StreamingAssets, Build, etc.)
-                // If the URL contains these, let it pass through normally.
-                if (url.includes("StreamingAssets") || url.includes("/Build/") || url.includes(".wasm") || url.includes(".data")) {
-                    return originalFetch(input, init);
-                }
-
-                // 3. IGNORE if it's already proxied (prevent double-proxying)
-                if (url.includes(".proxy/")) {
-                    return originalFetch(input, init);
-                }
-
-                // 4. Proxy everything else (External APIs, etc.)
-                return originalFetch(".proxy/" + input, init);
-            };
+            try {
+                discordHelper = new DiscordHelper();
+                discordHelper.setupParentIframe(); // This is what was crashing!
+            } catch (e) {
+                console.error("[Svelte] Failed to setup Discord Helper:", e);
+            }
+        } else {
+            console.log("[Svelte] Skipping DiscordHelper setup (Browser Mode).");
         }
 
-        discordHelper = new DiscordHelper();
-        discordHelper.setupParentIframe();
+        // Always load Unity, regardless of environment
         initializeUnity();
     });
+
+    function setupProxy() {
+        const originalFetch = window.fetch;
+        window.fetch = (input, init) => {
+            const url = typeof input === 'string' ? input : input instanceof Request ? input.url : '';
+            // Ignore Unity files and existing proxies
+            if (url.includes("StreamingAssets") || url.includes("/Build/") ||
+                url.includes(".wasm") || url.includes(".data") || url.includes(".proxy/")) {
+                return originalFetch(input, init);
+            }
+            return originalFetch(".proxy/" + input, init);
+        };
+    }
 
     function initializeUnity() {
         const script = document.createElement("script");
@@ -131,18 +126,18 @@
 
         document.body.appendChild(script);
 
+        // Mobile adjustment logic remains same...
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            // Mobile device style: fill the whole browser client area with the game canvas:
             var meta = document.createElement("meta");
             meta.name = "viewport";
-            meta.content =
-                "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
+            meta.content = "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
             document.getElementsByTagName("head")[0].appendChild(meta);
 
-            unityCanvas = document.querySelector("#unity-canvas");
-            unityCanvas.style.width = "100%";
-            unityCanvas.style.height = "100%";
-            unityCanvas.style.position = "fixed";
+            if(unityCanvas) {
+                unityCanvas.style.width = "100%";
+                unityCanvas.style.height = "100%";
+                unityCanvas.style.position = "fixed";
+            }
             document.body.style.textAlign = "left";
         }
     }
