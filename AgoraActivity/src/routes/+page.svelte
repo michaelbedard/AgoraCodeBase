@@ -14,6 +14,9 @@
     // let discordSdk: DiscordSDK;
     // let discordHelper: DiscordHelper | null = null;
 
+    let isGameLoaded = false;
+    let isGameStarted = false;
+
     async function startDiscordAuth(sdk: DiscordSDK) {
         await sdk.ready();
         console.log("[Svelte] Authorizing...");
@@ -112,6 +115,9 @@
     }
 
     function initializeUnity() {
+        if (isGameLoaded) return;
+        isGameLoaded = true;
+
         const script = document.createElement("script");
         script.src = "/Build/WebGL.loader.js";
         script.async = true;
@@ -159,7 +165,29 @@
             document.body.style.textAlign = "left";
         }
     }
+
+    function handleStartClick() {
+        isGameStarted = true;
+        initializeUnity();
+    }
+
 </script>
+
+<div class="container">
+    <canvas
+            bind:this={unityCanvas}
+            id="unity-canvas"
+            tabindex="-1"
+    ></canvas>
+
+    {#if !isGameStarted}
+        <div class="overlay">
+            <button class="start-btn" on:click={handleStartClick}>
+                Start Game
+            </button>
+        </div>
+    {/if}
+</div>
 
 <canvas
         bind:this={unityCanvas}
@@ -183,5 +211,41 @@
         height: 100vh;
         width: 100vw;
         overflow: hidden;
+    }
+
+    .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5); /* Semi-transparent dim */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
+
+    .start-btn {
+        padding: 15px 40px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        background-color: #5865F2; /* Discord Blurple */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .start-btn:hover {
+        transform: scale(1.05);
+        background-color: #4752C4;
     }
 </style>
