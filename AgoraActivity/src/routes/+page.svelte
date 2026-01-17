@@ -5,8 +5,6 @@
     // ... other imports
 
     let unityCanvas: HTMLCanvasElement;
-    let isGameLoaded = false;
-    let isGameStarted = false;
     let debugError = ""; // Variable to store error text
 
     // Function to print errors to the screen
@@ -15,14 +13,11 @@
         debugError = String(err?.message || err);
     }
 
-    function initializeUnity() {
-        // Prevent double loading
-        if (isGameLoaded) {
-            console.log("[Svelte] Game already loading/loaded.");
-            return;
-        }
-        isGameLoaded = true;
+    onMount(() => {
+        initializeUnity();
+    })
 
+    function initializeUnity() {
         const script = document.createElement("script");
         script.src = "/Build/WebGL.loader.js";
         script.async = true;
@@ -55,16 +50,6 @@
         document.body.appendChild(script);
     }
 
-    onMount(() => {
-        isGameStarted = true;
-        initializeUnity();
-    })
-
-
-    function handleStartClick() {
-        isGameStarted = true;
-        initializeUnity();
-    }
 </script>
 
 <div class="container">
@@ -73,14 +58,6 @@
             id="unity-canvas"
             tabindex="-1"
     ></canvas>
-
-    <!--{#if !isGameStarted}-->
-    <!--    <div class="overlay">-->
-    <!--        <button class="start-btn" on:click={handleStartClick}>-->
-    <!--            Start Game-->
-    <!--        </button>-->
-    <!--    </div>-->
-    <!--{/if}-->
 
     {#if debugError}
         <div class="error-console">
@@ -108,31 +85,7 @@
         display: block;
         width: 100%;
         height: 100%;
-        /* Moved background here */
         background: url('/Build/WebGL.jpg') center / cover;
-    }
-
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.7);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-    }
-
-    .start-btn {
-        padding: 20px 40px;
-        font-size: 20px;
-        background-color: #5865F2;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
     }
 
     .error-console {
