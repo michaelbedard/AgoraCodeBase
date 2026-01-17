@@ -148,22 +148,20 @@
     }
 </script>
 
-<body>
-    <canvas
+<canvas
         bind:this={unityCanvas}
         id="unity-canvas"
         tabindex="-1"
         width="960"
         style="
-            width: 100vw;
-            height: 100vh;
-            background: url('/Build/WebGL.jpg') center / cover;
-        "
-    ></canvas>
-</body>
+        width: 100vw;
+        height: 100vh;
+        background: url('/Build/WebGL.jpg') center / cover;
+    "
+></canvas>
 
 <style>
-    body {
+    :global(body) {
         margin: 0px;
         background-color: #000000;
         padding: 0px;
