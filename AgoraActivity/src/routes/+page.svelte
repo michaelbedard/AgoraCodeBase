@@ -7,7 +7,7 @@
     import { DiscordHelper } from "$lib/utils/DiscordHelper";
     import { config } from "$lib/config";
     import { DiscordSDK } from "@discord/embedded-app-sdk";
-    import { env } from '$env/dynamic/public';
+    import { PUBLIC_DISCORD_CLIENT_ID } from '$env/static/public';
     import { page } from "$app/stores";
 
     let discordSdk: DiscordSDK;
@@ -19,7 +19,7 @@
         console.log("[Svelte] Authorizing...");
 
         const { code } = await sdk.commands.authorize({
-            client_id: env.PUBLIC_DISCORD_CLIENT_ID,
+            client_id: PUBLIC_DISCORD_CLIENT_ID,
             response_type: "code",
             state: "",
             scope: ["identify", "guilds"],
@@ -30,6 +30,8 @@
     }
 
     onMount(() => {
+        initializeUnity();
+
         const queryParams = $page.url.searchParams;
         const isDiscordEnvironment = queryParams.has('frame_id'); // Intelligent check
 
@@ -37,7 +39,7 @@
             if (isDiscordEnvironment) {
                 // --- REAL DISCORD MODE ---
                 console.log("[Svelte] Detected Discord Environment.");
-                discordSdk = new DiscordSDK(env.PUBLIC_DISCORD_CLIENT_ID);
+                discordSdk = new DiscordSDK(PUBLIC_DISCORD_CLIENT_ID);
                 globalAuthPromise = startDiscordAuth(discordSdk);
             } else {
                 console.warn("[Svelte] No frame_id found. Running in BROWSER MODE (Mock Auth).");
@@ -90,9 +92,6 @@
         } else {
             console.log("[Svelte] Skipping DiscordHelper setup (Browser Mode).");
         }
-
-        // Always load Unity, regardless of environment
-        initializeUnity();
     });
 
     function setupProxy() {

@@ -1,5 +1,5 @@
-import { env as privateEnv } from "$env/dynamic/private";
-import {env, env as publicEnv} from "$env/dynamic/public";
+import { DISCORD_CLIENT_SECRET } from "$env/static/private";
+import { PUBLIC_DISCORD_CLIENT_ID } from "$env/static/public";
 import { error, json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 
@@ -13,8 +13,8 @@ export const POST: RequestHandler = async ({ request }) => {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             body: new URLSearchParams({
-                client_id: publicEnv.PUBLIC_DISCORD_CLIENT_ID,
-                client_secret: privateEnv.DISCORD_CLIENT_SECRET,
+                client_id: PUBLIC_DISCORD_CLIENT_ID,
+                client_secret: DISCORD_CLIENT_SECRET,
                 grant_type: "authorization_code",
                 code,
             }),
