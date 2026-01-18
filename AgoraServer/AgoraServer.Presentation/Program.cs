@@ -26,12 +26,21 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 // Allow specific origins
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
+    options.AddPolicy("DiscordPolicy",
         policy =>
         {
-            policy.AllowAnyOrigin()
+            policy.SetIsOriginAllowed(origin => 
+                {
+                    if (origin.Contains("localhost")) return true;
+                    if (origin.Contains(".amplifyapp.com")) return true;
+                    if (origin.Contains(".discordsays.com")) return true;
+                    if (origin == "https://discordsays.com") return true;
+
+                    return false;
+                })
                 .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowAnyHeader()
+                .AllowCredentials(); // <--- CRITICAL for SignalR
         });
 });
 

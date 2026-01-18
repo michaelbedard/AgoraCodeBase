@@ -55,27 +55,6 @@
                 logError(error)
             }
         };
-
-        // // Initialize Discord Helper ONLY if in Discord
-        // if (isDiscordEnvironment) {
-        //     if (window.location.hostname.includes("discordsays.com")) {
-        //         setupProxy();
-        //     }
-        //
-        //     try {
-        //         discordHelper = new DiscordHelper();
-        //         discordHelper.setupParentIframe();
-        //     } catch (error: any) {
-        //         console.error("[Svelte] Failed to setup Discord Helper:", error);
-        //
-        //         if (window.unityInstance) {
-        //             const errorMessage = error?.message || String(error) || "Unknown Svelte Error";
-        //             window.unityInstance.SendMessage("DiscordBridge", "OnDiscordError", errorMessage);
-        //         }
-        //     }
-        // } else {
-        //     console.log("[Svelte] Skipping DiscordHelper setup (Browser Mode).");
-        // }
     })
 
     async function startDiscordAuth(sdk: DiscordSDK) {
