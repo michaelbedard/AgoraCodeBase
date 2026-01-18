@@ -44,18 +44,18 @@ jobs:
 
     - name: Create SSH Key
       run: |
-        echo "${{ secrets.EC2_SSH_KEY }}" | base64 --decode > ec2-key.pem
+        echo "${{ secrets.EC2_SSH_KEY }}" > ec2-key.pem 
         chmod 600 ec2-key.pem
 
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@ec2-3-95-188-100.compute-1.amazonaws.com << 'EOF'
+        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@ec2-3-80-50-85.compute-1.amazonaws.com << 'EOF'
           set -e
           cd /wwwroot-temp
           sudo rm -rf *
           sudo wget "$(aws s3 presign s3://agora-s3-bucket-michael/app.zip)" -O PublishedAPI.zip
-          sudo rm -rf /wwwroot/agora-server/*
-          sudo unzip PublishedAPI.zip -d /wwwroot/agora-server
+          sudo rm -rf /wwwroot/AgoraServer/*
+          sudo unzip PublishedAPI.zip -d /wwwroot/AgoraServer
           sudo rm PublishedAPI.zip
-          sudo systemctl restart agora-server-service
+          sudo systemctl restart agora-service
         EOF
