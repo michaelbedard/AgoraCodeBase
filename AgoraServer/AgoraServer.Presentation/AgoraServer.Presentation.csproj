@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\AgoraShared\Agora.Core\Agora.Core.csproj" />
         <ProjectReference Include="..\AgoraServer.Application\AgoraServer.Application.csproj" />
     </ItemGroup>
 
@@ -31,10 +32,10 @@
         <PackageReference Include="NJsonSchema" Version="10.4.1" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Reference Include="Agora.Core">
-            <HintPath>..\..\AgoraShared\Agora.Core\bin\Debug\netstandard2.0\Agora.Core.dll</HintPath>
-        </Reference>
-    </ItemGroup>
+<!--    <ItemGroup>-->
+<!--        <Reference Include="Agora.Core">-->
+<!--            <HintPath>..\..\AgoraShared\Agora.Core\bin\Debug\netstandard2.0\Agora.Core.dll</HintPath>-->
+<!--        </Reference>-->
+<!--    </ItemGroup>-->
 
 </Project>

@@ -8,6 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\AgoraShared\Agora.Core\Agora.Core.csproj" />
+        <ProjectReference Include="..\..\AgoraShared\Agora.Engine\Agora.Engine.csproj" />
         <ProjectReference Include="..\AgoraServer.Domain\AgoraServer.Domain.csproj" />
         <ProjectReference Include="..\AgoraServer.Infrastructure\AgoraServer.Infrastructure.csproj" />
     </ItemGroup>
@@ -43,18 +45,6 @@
     <ItemGroup>
       <Folder Include="Handlers\Utility\" />
       <Folder Include="Tasks\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Agora.Core">
-        <HintPath>..\..\AgoraShared\Agora.Core\bin\Debug\netstandard2.0\Agora.Core.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Reference Include="Agora.Engine">
-            <HintPath>..\..\AgoraShared\Agora.Engine\bin\Debug\net8.0\Agora.Engine.dll</HintPath>
-        </Reference>
     </ItemGroup>
 
 </Project>

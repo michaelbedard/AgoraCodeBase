@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\AgoraShared\Agora.Core\Agora.Core.csproj" />
         <ProjectReference Include="..\AgoraServer.Domain\AgoraServer.Domain.csproj" />
     </ItemGroup>
 
@@ -29,11 +30,5 @@
     <ItemGroup>
       <Folder Include="Database\" />
       <Folder Include="Migrations\" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Reference Include="Agora.Core">
-            <HintPath>..\..\AgoraShared\Agora.Core\bin\Debug\netstandard2.0\Agora.Core.dll</HintPath>
-        </Reference>
     </ItemGroup>
 </Project>

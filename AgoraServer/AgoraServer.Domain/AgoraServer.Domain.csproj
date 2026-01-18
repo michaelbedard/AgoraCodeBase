@@ -8,22 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\AgoraShared\Agora.Core\Agora.Core.csproj" />
+        <ProjectReference Include="..\..\AgoraShared\Agora.Engine\Agora.Engine.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Folder Include="Entities\Persistence\" />
         <Folder Include="Enums\" />
         <Folder Include="Exceptions\" />
         <Folder Include="Stores\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Agora.Core">
-        <HintPath>..\..\AgoraShared\Agora.Core\bin\Debug\netstandard2.0\Agora.Core.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-    
-    <ItemGroup>
-        <Reference Include="Agora.Engine">
-            <HintPath>..\..\AgoraShared\Agora.Engine\bin\Debug\net8.0\Agora.Engine.dll</HintPath>
-        </Reference>
     </ItemGroup>
 
 </Project>
