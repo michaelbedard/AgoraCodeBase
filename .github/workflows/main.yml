@@ -1,1 +1,115 @@
-gg
+name: Deploy Backend to AWS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  DISABLE_POST_BUILD_EVENT: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0
+    
+    - name: Publish .NET app
+      run: dotnet publish -c Release -o output
+      working-directory: ./AgoraServer
+
+    - name: Zip files
+      run: |
+        cd output
+        zip -r ../app.zip *
+      working-directory: ./AgoraServer
+
+    - name: Configure AWS CLI
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Upload to S3
+      run: aws s3 cp app.zip s3://agora-s3-bucket-michael/app.zip
+      working-directory: ./AgoraServer
+
+    - name: Create SSH Key
+      run: |
+        echo "${{ secrets.EC2_SSH_KEY }}" | base64 --decode > ec2-key.pem
+        chmod 600 ec2-key.pem
+
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@ec2-3-95-188-100.compute-1.amazonaws.com << 'EOF'
+          set -e
+          cd /wwwroot-temp
+          sudo rm -rf *
+          sudo wget "$(aws s3 presign s3://agora-s3-bucket-michael/app.zip)" -O PublishedAPI.zip
+          sudo rm -rf /wwwroot/agora-server/*
+          sudo unzip PublishedAPI.zip -d /wwwroot/agora-server
+          sudo rm PublishedAPI.zip
+          sudo systemctl restart agora-server-service
+        EOF
+
+env:
+  DISABLE_POST_BUILD_EVENT: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0
+    
+    - name: Publish .NET app
+      run: dotnet publish -c Release -o output
+      working-directory: ./AgoraServer
+
+    - name: Zip files
+      run: |
+        cd output
+        zip -r ../app.zip *
+      working-directory: ./AgoraServer
+
+    - name: Configure AWS CLI
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Upload to S3
+      run: aws s3 cp app.zip s3://agora-s3-bucket-michael/app.zip
+      working-directory: ./AgoraServer
+
+    - name: Create SSH Key
+      run: |
+        echo "${{ secrets.EC2_SSH_KEY }}" | base64 --decode > ec2-key.pem
+        chmod 600 ec2-key.pem
+
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@ec2-3-95-188-100.compute-1.amazonaws.com << 'EOF'
+          set -e
+          cd /wwwroot-temp
+          sudo rm -rf *
+          sudo wget "$(aws s3 presign s3://agora-s3-bucket-michael/app.zip)" -O PublishedAPI.zip
+          sudo rm -rf /wwwroot/agora-server/*
+          sudo unzip PublishedAPI.zip -d /wwwroot/agora-server
+          sudo rm PublishedAPI.zip
+          sudo systemctl restart agora-server-service
+        EOF
