@@ -66,14 +66,19 @@ namespace _src.Code.Network
                 }
                 else
                 {
-                    // 3. LOGGING FIX: Do NOT pass the full 'Exception' if it contains SocketExceptions
-                    // Just log the text.
-                    Debug.LogError($"[HttpError] {url} : {request.error} | {request.downloadHandler?.text}");
-                        
+                    long statusCode = request.responseCode;
+                    string responseBody = request.downloadHandler?.text ?? "<Empty>";
+                    string errorMsg = request.error;
+
+                    // Log full details to the Unity/Browser Console
+                    Debug.LogError($"[HttpError] Status: {statusCode} | URL: {url} | Error: {errorMsg} | Body: {responseBody}");
+                
+                    // Customize the message for the UI
+                    string uiMessage = $"HTTP {statusCode}: {errorMsg}\n{responseBody}";
                     return new HttpResponseResult<T>
                     {
                         IsSuccess = false,
-                        Message = $"HTTP Request failed: {request.error}", // Use request.error, safest for WebGL
+                        Message = uiMessage,
                         Data = default
                     };
                 }

@@ -39,6 +39,7 @@ dump.rdb
 # Keys
 service-account-dev.json
 service-account-prod.json
+.pem
 
 # Environment variables
 .env
