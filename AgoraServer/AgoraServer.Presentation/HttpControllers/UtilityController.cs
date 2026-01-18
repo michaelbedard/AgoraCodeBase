@@ -21,7 +21,7 @@ public class UtilityController : ControllerBase
     [HttpGet("version")]
     public async Task<ActionResult<string>> GetVersion()
     {
-        return Ok(Constants.Version);
+        return Ok(Constants.Version + "::0");
     }
     
     [HttpGet("connectedUsers")]
