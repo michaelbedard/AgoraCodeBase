@@ -107,7 +107,7 @@ builder.Logging.AddConsole();
 var app = builder.Build();
 
 // Make sure CORS is enabled before SignalR
-app.UseCors("AllowAll");
+app.UseCors("DiscordPolicy");
 
 // Configure the Http request pipeline.
 if (app.Environment.IsDevelopment())
