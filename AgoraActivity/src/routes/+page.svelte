@@ -59,9 +59,10 @@
         };
     })
 
-    const API_URL = "https://api.agoraboardgames.com/Utility/version";
-
     async function testServerConnection() {
+
+        const API_URL = "/api/Utility/version";
+
         try {
             // Note: We are NOT sending a userId here, just testing connectivity
             const response = await fetch(API_URL, {
