@@ -35,7 +35,7 @@ jobs:
     - name: Zip files
       run: |
         cd output
-        zip -r ../app.zip *
+        zip -r ../app.zip .
       working-directory: ./AgoraServer
 
     - name: Configure AWS CLI
