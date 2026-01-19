@@ -25,6 +25,13 @@ jobs:
       run: dotnet publish -c Release -o output
       working-directory: ./AgoraServer
 
+    - name: Create .env file
+      working-directory: ./AgoraServer/output
+      run: |
+        echo "CONNECTION_STRING_PRODUCTION=XXX" >> .env
+        echo "DISCORD_CLIENT_SECRET=${{ secrets.DISCORD_CLIENT_SECRET }}" >> .env
+        echo "ASPNETCORE_ENVIRONMENT=Production" >> .env
+
     - name: Zip files
       run: |
         cd output
