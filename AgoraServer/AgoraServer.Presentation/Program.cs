@@ -31,10 +31,15 @@ builder.Services.AddCors(options =>
         {
             policy.SetIsOriginAllowed(origin => 
                 {
+                    if (string.IsNullOrEmpty(origin)) return true;
+                    if (origin == "null") return true;
+                    
                     if (origin.Contains("localhost")) return true;
                     if (origin.Contains(".amplifyapp.com")) return true;
                     if (origin.Contains(".discordsays.com")) return true;
                     if (origin == "https://discordsays.com") return true;
+                    
+                    Console.WriteLine($"[CORS] Rejected Origin: {origin}");
 
                     return false;
                 })
