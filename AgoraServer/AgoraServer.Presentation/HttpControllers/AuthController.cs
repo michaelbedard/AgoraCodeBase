@@ -1,3 +1,4 @@
+using Agora.Core.Dtos;
 using Agora.Core.Payloads.Http.Auth;
 using Application.Handlers.Auth.Logout;
 using MediatR;
@@ -21,8 +22,17 @@ public class AuthController : BaseApiController
 
     // Login route
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginPayload loginPayload)
+    public async Task<ActionResult<UserDto>> Login(LoginPayload loginPayload)
     {
+        return Ok(new UserDto()
+        {
+            Id = "an_id",
+            Username = "Marc",
+            LobbyId = "009",
+            Avatar = 2,
+            Pronouns = 3
+        });
+            
         var command = new LoginRequest
         {
             OAuthCode = loginPayload.OAuthCode,
