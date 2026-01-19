@@ -7,7 +7,7 @@ namespace Application.Services;
 
 public class SessionService : ISessionService
 {
-    private readonly ConcurrentDictionary<Guid, RuntimeUser> _users = new();
+    private readonly ConcurrentDictionary<string, RuntimeUser> _users = new();
 
     public Result AddSession(RuntimeUser user)
     {
@@ -18,7 +18,7 @@ public class SessionService : ISessionService
         return Result.Failure($"User {user.Username} already exists in memory.");
     }
 
-    public Result RemoveSession(Guid userId)
+    public Result RemoveSession(string userId)
     {
         if (_users.TryRemove(userId, out _))
         {
@@ -39,7 +39,7 @@ public class SessionService : ISessionService
         return Result<RuntimeUser>.Success(user);
     }
 
-    public Result<RuntimeUser> GetSessionById(Guid userId)
+    public Result<RuntimeUser> GetSessionById(string userId)
     {
         if (_users.TryGetValue(userId, out var user))
         {
@@ -48,7 +48,7 @@ public class SessionService : ISessionService
         return Result<RuntimeUser>.Failure($"User ID {userId} not found.");
     }
 
-    public bool SessionExist(Guid userId)
+    public bool SessionExist(string userId)
     {
         throw new NotImplementedException();
     }

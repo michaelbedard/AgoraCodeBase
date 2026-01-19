@@ -46,37 +46,13 @@ public partial class HubController : Hub<IClientContract>
 
     public override async Task OnConnectedAsync()
     {
-        var userIdString = Context.GetHttpContext()?.Request.Query["userId"].FirstOrDefault();
+        var userId = Context.GetHttpContext()?.Request.Query["userId"].FirstOrDefault();
         
-        if (string.IsNullOrEmpty(userIdString))
+        if (string.IsNullOrEmpty(userId))
         {
             await Clients.Caller.HandleError("userId is required to connect.");
             Context.Abort();
             return;
-        }
-        
-        Guid userId;
-
-        // ---------------------------------------------------------
-        // DEVELOPMENT HACK: Allow "1" to "9" for easier Postman testing
-        // ---------------------------------------------------------
-        
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-        if (environment == "Development" && userIdString.Length == 1 && userIdString[0] >= '1' && userIdString[0] <= '9')
-        {
-            // Manually construct the GUID: 0000...0001
-            string devGuid = $"00000000-0000-0000-0000-00000000000{userIdString}";
-            userId = Guid.Parse(devGuid);
-        }
-        else
-        {
-            // Parse GUID normally
-            if (!Guid.TryParse(userIdString, out userId))
-            {
-                Console.WriteLine($"Invalid GUID format: '{userIdString}'.");
-                Context.Abort();
-                return;
-            }
         }
         
         var userResult = _sessionService.GetSessionById(userId);

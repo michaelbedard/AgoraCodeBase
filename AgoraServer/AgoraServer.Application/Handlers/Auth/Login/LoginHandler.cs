@@ -57,11 +57,7 @@ public class LoginHandler : IRequestHandler<LoginRequest, Result<UserDto>>
         }
 
         // 3. Convert to your internal RuntimeUser
-        var runtimeUser = new RuntimeUser
-        {
-            Id = GenerateGuidFromDiscordId(discordUser.Id),
-            Username = discordUser.Username,
-        };
+        var runtimeUser = new RuntimeUser(discordUser.Id, discordUser.Username);
 
         // 4. Store in Session Service (So they are "Logged In")
         var sessionResult = _sessionService.AddSession(runtimeUser);

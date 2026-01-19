@@ -26,37 +26,14 @@ public abstract class BaseApiController : ControllerBase
     protected Result<RuntimeUser> GetCurrentUser()
     {
         // 1. Extract from Query String
-        string? userIdString = HttpContext.Request.Query["userId"].ToString();
+        string userId = HttpContext.Request.Query["userId"].ToString();
 
-        if (string.IsNullOrEmpty(userIdString))
+        if (string.IsNullOrEmpty(userId))
         {
             Logger.LogWarning($"[{HttpContext.Request.Method} {HttpContext.Request.Path}] Missing 'userId' query parameter.");
             return Result<RuntimeUser>.Failure("Missing 'userId' query parameter.");
         }
         
-        Guid userId;
-
-        // ---------------------------------------------------------
-        // DEVELOPMENT HACK: Allow "1" to "9" for easier Postman testing
-        // ---------------------------------------------------------
-        
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-        if (environment == "Development" && userIdString.Length == 1 && userIdString[0] >= '1' && userIdString[0] <= '9')
-        {
-            // Manually construct the GUID: 0000...0001
-            string devGuid = $"00000000-0000-0000-0000-00000000000{userIdString}";
-            userId = Guid.Parse(devGuid);
-        }
-        else
-        {
-            // Parse GUID normally
-            if (!Guid.TryParse(userIdString, out userId))
-            {
-                Logger.LogWarning($"[{HttpContext.Request.Method} {HttpContext.Request.Path}] Invalid GUID format: '{userIdString}'.");
-                return Result<RuntimeUser>.Failure($"Invalid 'userId' format. Expected a GUID.");
-            }
-        }
-
         // 3. Lookup in Memory
         var userResult = SessionService.GetSessionById(userId);
 

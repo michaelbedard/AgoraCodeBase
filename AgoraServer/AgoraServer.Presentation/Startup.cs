@@ -24,19 +24,17 @@ public class Startup
         if (environment == "Development")
         {
             // create dummies client for testing
-            CreateRuntimeClient("00000000-0000-0000-0000-000000000001", "Alice");
-            CreateRuntimeClient("00000000-0000-0000-0000-000000000002", "Bob");
-            CreateRuntimeClient("00000000-0000-0000-0000-000000000003", "Charlie");
-            CreateRuntimeClient("00000000-0000-0000-0000-000000000004", "David");
+            CreateRuntimeClient("1", "Alice");
+            CreateRuntimeClient("2", "Bob");
+            CreateRuntimeClient("3", "Charlie");
+            CreateRuntimeClient("4", "David");
         }
     }
 
     private void CreateRuntimeClient(string userId, string username, int pronouns = 0)
     {
-        var runtimeUser = new RuntimeUser
+        var runtimeUser = new RuntimeUser(userId, username)
         {
-            Id = Guid.Parse(userId),
-            Username = username,
             Pronouns = pronouns
         };
 

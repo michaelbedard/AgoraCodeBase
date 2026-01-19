@@ -5,7 +5,7 @@ namespace Domain.Entities.Runtime;
 public class RuntimeUser
 {
     //profile
-    public Guid Id { get; set; }
+    public string Id { get; set; }
     public string Username { get; set; }
     public int Avatar { get; set; }
     public int Pronouns { get; set; }
@@ -23,10 +23,10 @@ public class RuntimeUser
     public List<RuntimeUser> PreviousPlayers { get; set; }
     
     
-    public RuntimeUser()
+    public RuntimeUser(string id, string username)
     {
-        Id = Guid.Empty;
-        Username = string.Empty;
+        Id = id;
+        Username = username;
         Avatar = 0;
         Pronouns = 0;
         Duo = null;

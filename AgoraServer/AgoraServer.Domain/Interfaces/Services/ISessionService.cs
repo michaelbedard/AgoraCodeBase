@@ -7,12 +7,12 @@ public interface ISessionService
 {
     // Lifecycle
     Result AddSession(RuntimeUser user);
-    Result RemoveSession(Guid userId);
+    Result RemoveSession(string userId);
 
     // Lookup
     Result<RuntimeUser> GetSessionByUsername(string username);
-    Result<RuntimeUser> GetSessionById(Guid userId);
-    bool SessionExist(Guid userId);
+    Result<RuntimeUser> GetSessionById(string userId);
+    bool SessionExist(string userId);
     
     // Optional: Useful for debugging or admin panels
     IEnumerable<RuntimeUser> GetAllSessions();
