@@ -30,7 +30,7 @@ public class UtilityController : ControllerBase
     public async Task<ActionResult<string>> GetTest()
     {
         var clientId = _config["Discord:ClientId"]!;
-        var clientSecret = _config["DISCORD_CLIENT_SECRET"]!;
+        var clientSecret = Environment.GetEnvironmentVariable("DISCORD_CLIENT_SECRET");
             
         return Ok(clientId + "::" + clientSecret);
     }

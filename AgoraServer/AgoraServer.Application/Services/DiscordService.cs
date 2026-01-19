@@ -22,10 +22,12 @@ public class DiscordAuthService : IDiscordAuthService
     {
         try
         {
+            var clientSecret = Environment.GetEnvironmentVariable("DISCORD_CLIENT_SECRET") ?? "";
+            
             var payload = new Dictionary<string, string>
             {
                 { "client_id", _config["Discord:ClientId"]! },
-                { "client_secret", _config["DISCORD_CLIENT_SECRET"]! },
+                { "client_secret", clientSecret },
                 { "grant_type", "authorization_code" },
                 { "code", code },
                 { "redirect_uri", _config["Discord:RedirectUri"]! }
