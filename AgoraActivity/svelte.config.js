@@ -12,16 +12,6 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
-		csp: {
-			mode: 'auto',
-			directives: {
-				'default-src': ["'self'"],
-				'script-src': ["'self'", "'unsafe-inline'"], // Unity often needs unsafe-inline
-				'connect-src': ["'self'", "https://api.agoraboardgames.com", "https://*.discordsays.com"],
-				'img-src': ["'self'", "data:", "blob:"],
-				'style-src': ["'self'", "'unsafe-inline'"]
-			}
-		}
 	}
 };
 
