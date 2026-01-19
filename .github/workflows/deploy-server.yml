@@ -58,11 +58,25 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@ec2-3-80-50-85.compute-1.amazonaws.com << 'EOF'
           set -e
+          
+          # Clean temp folder
+          sudo rm -rf /wwwroot-temp
+          sudo mkdir /wwwroot-temp
           cd /wwwroot-temp
-          sudo rm -rf *
+          
+          # Download new build
           sudo wget "$(aws s3 presign s3://agora-s3-bucket-michael/app.zip)" -O PublishedAPI.zip
-          sudo rm -rf /wwwroot/AgoraServer/*
-          sudo unzip PublishedAPI.zip -d /wwwroot/AgoraServer
+          
+          # 1. Clear OLD files (Use specific command to delete hidden .env files too)
+          sudo find /wwwroot/AgoraServer -mindepth 1 -delete
+          
+          # 2. Unzip NEW files with -o (Overwrite All)
+          sudo unzip -o PublishedAPI.zip -d /wwwroot/AgoraServer
+          
+          # Cleanup
           sudo rm PublishedAPI.zip
+          
+          # Restart Service (in case .env changed)
+          sudo systemctl daemon-reload
           sudo systemctl restart agora-service
         EOF
