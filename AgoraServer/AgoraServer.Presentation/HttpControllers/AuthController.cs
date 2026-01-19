@@ -32,6 +32,7 @@ public class AuthController : BaseApiController
             Avatar = 2,
             Pronouns = 3
         });
+        
             
         var command = new LoginRequest
         {
