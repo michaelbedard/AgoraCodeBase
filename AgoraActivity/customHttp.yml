@@ -2,4 +2,4 @@ customHeaders:
   - pattern: '**'
     headers:
       - key: 'Content-Security-Policy'
-        value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.discordsays.com; connect-src 'self' https://api.agoraboardgames.com wss://api.agoraboardgames.com https://*.discordsays.com https://discord.com https://cdn.discordapp.com; img-src 'self' data: blob: https://cdn.discordapp.com; style-src 'self' 'unsafe-inline';"
+        value: "defaualt-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.discordsys.com; connect-src 'self' https://api.agoraboardgames.com wss://api.agoraboardgames.com https://*.discordsays.com https://discord.com https://cdn.discordapp.com; img-src 'self' data: blob: https://cdn.discordapp.com; style-src 'self' 'unsafe-inline';"
