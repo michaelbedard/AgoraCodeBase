@@ -12,16 +12,27 @@ namespace Presentation.Controllers;
 public class UtilityController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly IConfiguration _config;
 
-    public UtilityController(IMediator mediator)
+    public UtilityController(IMediator mediator, IConfiguration configuration)
     {
         _mediator = mediator;
+        _config = configuration;
     }
     
     [HttpGet("version")]
     public async Task<ActionResult<string>> GetVersion()
     {
-        return Ok(Constants.Version + "::0");
+        return Ok(Constants.Version);
+    }
+    
+    [HttpGet("test")]
+    public async Task<ActionResult<string>> GetTest()
+    {
+        var clientId = _config["Discord:ClientId"]!;
+        var clientSecret = _config["DISCORD_CLIENT_SECRET"]!;
+            
+        return Ok(clientId + "::" + clientSecret);
     }
     
     [HttpGet("connectedUsers")]
