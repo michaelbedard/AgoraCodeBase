@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Go into your app folder and install dependencies
+        - cd AgoraActivity && npm install
+    build:
+      commands:
+        # Go into your app folder and build
+        - cd AgoraActivity && npm run build
+  artifacts:
+    # IMPORTANT: Point to where Svelte puts the output inside that folder
+    baseDirectory: AgoraActivity/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - AgoraActivity/node_modules/**/*
