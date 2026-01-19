@@ -13,6 +13,7 @@ namespace _src.Code.App.Logic
         private readonly IVisualElementService _visualElementService;
         private readonly IAudioService _audioService;
         private readonly IAuthHttpProxy _authHttpProxy;
+        private readonly IUtilityHttpProxy _utilityHttpProxy;
         private readonly IHubProxy _hubProxy;
         private readonly IClientDataService _clientDataService;
         
@@ -25,6 +26,7 @@ namespace _src.Code.App.Logic
             IVisualElementService visualElementService,
             IAudioService audioService,
             IAuthHttpProxy authHttpProxy,
+            IUtilityHttpProxy utilityHttpProxy,
             IHubProxy hubProxy,
             IClientDataService clientDataService)
         {
@@ -32,6 +34,7 @@ namespace _src.Code.App.Logic
             _visualElementService = visualElementService;
             _audioService = audioService;
             _authHttpProxy = authHttpProxy;
+            _utilityHttpProxy = utilityHttpProxy;
             _hubProxy = hubProxy;
             _clientDataService = clientDataService;
         }

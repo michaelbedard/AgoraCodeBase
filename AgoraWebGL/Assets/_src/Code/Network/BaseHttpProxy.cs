@@ -56,12 +56,23 @@ namespace _src.Code.Network
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
-                    // ... (Success logic is fine) ...
+                    string text = request.downloadHandler.text;
+
+                    T resultData;
+                    if (typeof(T) == typeof(string))
+                    {
+                        resultData = (T)(object)text;
+                    }
+                    else
+                    {
+                        resultData = JsonConvert.DeserializeObject<T>(text);
+                    }
+                    
                     return new HttpResponseResult<T>
                     {
                         IsSuccess = true,
                         Message = "Request succeeded.",
-                        Data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text),
+                        Data = resultData,
                     };
                 }
                 else
