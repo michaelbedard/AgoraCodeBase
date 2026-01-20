@@ -36,6 +36,7 @@ namespace _src.Code.App.Logic.Entry
         {
             // 1. Show Loading
             var loadingWidget = await _uiService.GetOrCreate<LoadingWidget>();
+            _entryScreen.HideMainView();
             _entryScreen.ShowLoadingWidget(loadingWidget);
             
             // wait 1 sec
@@ -75,8 +76,10 @@ namespace _src.Code.App.Logic.Entry
                     }
                 };
                 
-                _entryScreen.ShowLobbyView(lobbyView);
                 Debug.Log($"Joined lobby: {result.Data.Id}");
+                
+                _entryScreen.HideLoadingWidget();
+                _entryScreen.ShowLobbyView(lobbyView);
             }
             else
             {
@@ -86,10 +89,10 @@ namespace _src.Code.App.Logic.Entry
                 warningPopup.Message.text = result.Message;
                 
                 Debug.Log("Failed to join lobby");
+                
+                _entryScreen.HideLoadingWidget();
+                _entryScreen.ShowMainView();
             }
-            
-            // 5. Cleanup Loading
-            _entryScreen.HideLoadingWidget();
         }
 
         private async void HandlePlayOnline()

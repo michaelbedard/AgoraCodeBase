@@ -63,6 +63,10 @@ namespace _src.Code.Network
                     {
                         resultData = (T)(object)text;
                     }
+                    else if (string.IsNullOrWhiteSpace(text))
+                    {
+                        resultData = default(T);
+                    }
                     else
                     {
                         resultData = JsonConvert.DeserializeObject<T>(text);

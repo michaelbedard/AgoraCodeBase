@@ -36,8 +36,10 @@ namespace _src.Code.Core
         {
             get
             {
+                // return "https://api.agoraboardgames.com";
+                
                 #if UNITY_EDITOR
-                    return "http://localhost:5039";
+                    return "https://localhost:7034";
                 #endif
                 
                 string currentUrl = Application.absoluteURL;

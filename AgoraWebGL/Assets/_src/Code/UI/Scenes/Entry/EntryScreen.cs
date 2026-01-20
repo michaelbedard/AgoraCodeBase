@@ -17,7 +17,7 @@ namespace _src.Code.UI.Scenes.Entry
         public event Action ShopClicked;
         
         // Fields
-        private VisualElement _btnContainer;
+        private VisualElement _container;
         
         // 2. Distinct buttons for each action
         private PrimaryButton _playFriendsBtn;
@@ -30,7 +30,7 @@ namespace _src.Code.UI.Scenes.Entry
         
         protected override void InitializeCore()
         {
-            _btnContainer = Get("BtnsContainer");; 
+            _container = Get("Container");; 
 
             _playFriendsBtn = Get<PrimaryButton>("PlayWithFriendsBtn");
             _playOnlineBtn = Get<PrimaryButton>("PlayOnlineBtn");
@@ -46,11 +46,21 @@ namespace _src.Code.UI.Scenes.Entry
             _shopBtn.Text = "Shop";
             _shopBtn.Clicked += () => ShopClicked?.Invoke();
         }
+        
+        public void ShowMainView()
+        {
+            _container.style.display = DisplayStyle.Flex;
+        }
+        
+        public void HideMainView()
+        {
+            _container.style.display = DisplayStyle.None;
+        }
 
         public void ShowLobbyView(LobbyView lobbyView)
         {
             _lobbyView = lobbyView;
-            style.display = DisplayStyle.None;
+            _container.style.display = DisplayStyle.None;
 
             _lobbyView.AddToRootElement();
         }
@@ -63,14 +73,12 @@ namespace _src.Code.UI.Scenes.Entry
                 _lobbyView = null;
             }
             
-            style.display = DisplayStyle.Flex;
+            _container.style.display = DisplayStyle.Flex;
         }
 
         public void ShowLoadingWidget(LoadingWidget loadingWidget)
         {
             _loadingWidget = loadingWidget;
-            
-            style.display = DisplayStyle.None;
             _loadingWidget.AddToRootElement();
         }
 
@@ -81,8 +89,6 @@ namespace _src.Code.UI.Scenes.Entry
                 _loadingWidget.RemoveFromHierarchy();
                 _loadingWidget = null;
             }
-
-            style.display = DisplayStyle.Flex;
         }
         
         // HELPERS

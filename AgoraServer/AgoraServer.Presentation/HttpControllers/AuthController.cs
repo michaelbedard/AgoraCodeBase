@@ -24,16 +24,6 @@ public class AuthController : BaseApiController
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginPayload loginPayload)
     {
-        return Ok(new UserDto()
-        {
-            Id = "an_id",
-            Username = "Marc",
-            LobbyId = "009",
-            Avatar = 2,
-            Pronouns = 3
-        });
-        
-            
         var command = new LoginRequest
         {
             OAuthCode = loginPayload.OAuthCode,

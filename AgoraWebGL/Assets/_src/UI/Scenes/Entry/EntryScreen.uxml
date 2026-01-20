@@ -1,11 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="PrimaryButton" src="project://database/Assets/_src/UI/Common/PrimaryButton.uxml?fileID=9197481963319205126&amp;guid=e18142c166cc38c419968607812eb916&amp;type=3#PrimaryButton" />
     <_src.Code.UI.Scenes.Entry.EntryScreen style="flex-grow: 1; align-items: center; display: flex;">
-        <ui:VisualElement name="logo" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/_src/Sprites/Agora_bannier_noBackground_white.png?fileID=21300000&amp;guid=21c84580750b6d94ab37f93315a5269b&amp;type=3#Agora_bannier_noBackground_white&quot;); height: 50%; -unity-background-scale-mode: scale-to-fit; width: 1027px; margin-top: 0; align-items: center; justify-content: center; margin-bottom: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-right: 0; margin-left: 0;" />
-        <ui:VisualElement name="BtnsContainer" style="flex-grow: 0; align-items: stretch; justify-content: center; width: 1000px; height: 50%;">
-            <ui:Instance template="PrimaryButton" name="PlayWithFriendsBtn" style="flex-grow: 0; width: auto; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; display: flex;" />
-            <ui:Instance template="PrimaryButton" name="PlayOnlineBtn" style="flex-grow: 0; width: auto; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;" />
-            <ui:Instance template="PrimaryButton" name="ShopBtn" style="flex-grow: 0; width: auto; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;" />
+        <ui:VisualElement name="Container" style="flex-grow: 1; height: 100%; width: 100%; align-items: center; justify-content: center;">
+            <ui:VisualElement name="logo" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/_src/Sprites/Agora_bannier_noBackground_white.png?fileID=21300000&amp;guid=21c84580750b6d94ab37f93315a5269b&amp;type=3#Agora_bannier_noBackground_white&quot;); height: 50%; -unity-background-scale-mode: scale-to-fit; width: 1027px; margin-top: 0; align-items: center; justify-content: center; margin-bottom: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-right: 0; margin-left: 0;" />
+            <ui:VisualElement name="BtnsContainer" style="flex-grow: 0; align-items: stretch; justify-content: center; width: 1000px; height: 50%;">
+                <ui:Instance template="PrimaryButton" name="PlayWithFriendsBtn" style="flex-grow: 0; width: auto; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; display: flex;" />
+                <ui:Instance template="PrimaryButton" name="PlayOnlineBtn" style="flex-grow: 0; width: auto; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;" />
+                <ui:Instance template="PrimaryButton" name="ShopBtn" style="flex-grow: 0; width: auto; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </_src.Code.UI.Scenes.Entry.EntryScreen>
 </ui:UXML>
