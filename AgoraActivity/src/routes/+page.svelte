@@ -17,8 +17,6 @@
         const queryParams = $page.url.searchParams;
         const isDiscordEnvironment = queryParams.has('frame_id');
 
-        testServerConnection();
-
         if (!globalAuthPromise) {
             if (isDiscordEnvironment) {
                 // --- REAL DISCORD MODE ---
@@ -58,34 +56,6 @@
             }
         };
     })
-
-    async function testServerConnection() {
-
-        const API_URL = "/api/Utility/version";
-
-        try {
-            // Note: We are NOT sending a userId here, just testing connectivity
-            const response = await fetch(API_URL, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-
-            if (!response.ok) {
-                // If this hits, the server rejected us (403, 500, etc)
-                const text = await response.text();
-                logError(`[TEST] HTTP ERROR ${response.status}: ${text}`);
-            } else {
-                // If this hits, CONNECTIVITY IS FINE. The issue is Unity-specific.
-                const data = await response.text();
-                logError(`[TEST] SUCCESS! Server Version: ${data}`);
-            }
-        } catch (err: any) {
-            // If this hits, it's likely CORS or Network Unreachable
-            logError(`[TEST] FETCH EXCEPTION: ${err.message}`);
-        }
-    }
 
     async function startDiscordAuth(sdk: DiscordSDK) {
         await sdk.ready();
