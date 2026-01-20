@@ -9,24 +9,6 @@ namespace _src.Code.App.Logic
         public async Task Login(string currentChannelId, string authCode)
         {
             _clientDataService.ChannelId = currentChannelId;
-
-            var versionResult = await _utilityHttpProxy.GetVersion();
-            if (versionResult.IsSuccess)
-            {
-                var popup = await _visualElementService.Create<WarningPopup>();
-                popup.Title.Label.text = "Version success!";
-                popup.Message.text = versionResult.Data + "\n" + authCode;
-                popup.Button.Label.text = "Ok";
-                popup.Show();
-            }
-            else
-            {
-                var popup = await _visualElementService.Create<WarningPopup>();
-                popup.Title.Label.text = "Version failed!";
-                popup.Message.text = versionResult.Message;
-                popup.Button.Label.text = "Ok";
-                popup.Show();
-            }
             
             var result = await _authHttpProxy.Login(new LoginPayload()
             {
@@ -46,7 +28,7 @@ namespace _src.Code.App.Logic
                 var hubConnectionSuccess = await _hubProxy.ConnectAsync();
                 if (!hubConnectionSuccess)
                 {
-                    var warning = await _visualElementService.GetOrCreate<WarningPopup>();
+                    var warning = await _visualElementService.Create<WarningPopup>();
                     warning.Title.Label.text = "Hub Connection failed!";
                     warning.Button.Label.text = "Ok";
                     warning.Show();
