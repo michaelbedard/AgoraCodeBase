@@ -1,3 +1,4 @@
+using System;
 using Agora.Core.Enums;
 using UnityEngine;
 
@@ -35,13 +36,31 @@ namespace _src.Code.Core
         {
             get
             {
-                return "https://api.agoraboardgames.com";
-                
-                #if !UNITY_EDITOR
-                    return "https://api.agoraboardgames.com";
+                #if UNITY_EDITOR
+                    return "http://localhost:5039";
                 #endif
+                
+                string currentUrl = Application.absoluteURL;
 
-                return "http://localhost:5039";
+                // 2. Check if we are running inside Discord's Proxy
+                if (!string.IsNullOrEmpty(currentUrl) && currentUrl.Contains("discordsays.com"))
+                {
+                    try 
+                    {
+                        // Parse the host (e.g., "123456789.discordsays.com")
+                        Uri uri = new Uri(currentUrl);
+                
+                        // Return: https://12345.discordsays.com/api
+                        return $"https://{uri.Host}/api";
+                    }
+                    catch (Exception) 
+                    {
+                        Debug.LogWarning("Failed to parse Discord URL, falling back to Prod.");
+                    }
+                }
+
+                // 3. Fallback for Unity Editor or direct hosting
+                return "https://api.agoraboardgames.com";
             }
         }
 

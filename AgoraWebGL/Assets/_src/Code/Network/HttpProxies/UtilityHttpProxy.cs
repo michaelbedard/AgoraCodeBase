@@ -14,7 +14,6 @@ namespace _src.Code.Network.HttpProxies
         {
         }
 
-        
         public async Task<HttpResponseResult<string>> GetVersion()
         {
             var url = $"{ServiceUrl}/version";
