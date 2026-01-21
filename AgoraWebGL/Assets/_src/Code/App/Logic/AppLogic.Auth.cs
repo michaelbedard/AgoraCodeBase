@@ -28,14 +28,14 @@ namespace _src.Code.App.Logic
                 var hubConnectionSuccess = await _hubProxy.ConnectAsync();
                 if (!hubConnectionSuccess)
                 {
-                    var warning = await _visualElementService.GetOrCreate<WarningPopup>();
+                    var warning = await _visualElementService.Create<WarningPopup>();
                     warning.Title.Label.text = "Hub Connection failed!";
                     warning.Button.Label.text = "Ok";
                     warning.Show();
                     return;
                 }
                 
-                var popup = await _visualElementService.GetOrCreate<WarningPopup>();
+                var popup = await _visualElementService.Create<WarningPopup>();
                 popup.Title.Label.text = "Login success!";
                 popup.Message.text = result.Data.Username + "\n" + _clientDataService.Id + "\n" + _clientDataService.ChannelId;
                 popup.Button.Label.text = "Ok";
@@ -43,7 +43,7 @@ namespace _src.Code.App.Logic
             }
             else
             {
-                var popup = await _visualElementService.GetOrCreate<WarningPopup>();
+                var popup = await _visualElementService.Create<WarningPopup>();
                 popup.Title.Label.text = "Login failed!";
                 popup.Message.text = result.Message;
                 popup.Button.Label.text = "Ok";
