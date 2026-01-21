@@ -25,15 +25,15 @@ namespace _src.Code.App.Logic
                 _clientDataService.Pronouns = user.Pronouns;
                 
                 // Connect to hub
-                var hubConnectionSuccess = await _hubProxy.ConnectAsync();
-                if (!hubConnectionSuccess)
-                {
-                    var warning = await _visualElementService.Create<WarningPopup>();
-                    warning.Title.Label.text = "Hub Connection failed!";
-                    warning.Button.Label.text = "Ok";
-                    warning.Show();
-                    return;
-                }
+                // var hubConnectionSuccess = await _hubProxy.ConnectAsync();
+                // if (!hubConnectionSuccess)
+                // {
+                //     var warning = await _visualElementService.Create<WarningPopup>();
+                //     warning.Title.Label.text = "Hub Connection failed!";
+                //     warning.Button.Label.text = "Ok";
+                //     warning.Show();
+                //     return;
+                // }
                 
                 var popup = await _visualElementService.Create<WarningPopup>();
                 popup.Title.Label.text = "Login success!";
