@@ -35,7 +35,7 @@ namespace _src.Code.App.Logic
                 //     return;
                 // }
                 
-                var popup = await _visualElementService.Create<WarningPopup>();
+                var popup = await _visualElementService.GetOrCreate<WarningPopup>();
                 popup.Title.Label.text = "Login success!";
                 popup.Message.text = result.Data.Username + "\n" + _clientDataService.Id + "\n" + _clientDataService.ChannelId;
                 popup.Button.Label.text = "Ok";
@@ -43,7 +43,7 @@ namespace _src.Code.App.Logic
             }
             else
             {
-                var popup = await _visualElementService.Create<WarningPopup>();
+                var popup = await _visualElementService.GetOrCreate<WarningPopup>();
                 popup.Title.Label.text = "Login failed!";
                 popup.Message.text = result.Message;
                 popup.Button.Label.text = "Ok";

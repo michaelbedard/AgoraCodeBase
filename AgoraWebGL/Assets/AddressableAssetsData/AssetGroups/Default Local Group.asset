@@ -68,7 +68,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 49a6c9fb86913ea478d02016d017cc39
-    m_Address: Assets/_src/UI/Popups/WarningPopup.uxml
+    m_Address: Assets/_src/UI/Shared/WarningPopup.uxml
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
