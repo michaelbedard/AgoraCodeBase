@@ -30,7 +30,7 @@
                     channelId: "mock_channel_001"
                 });
 
-                initializeUnity();
+                initializeUnity(false);
             }
         }
 
@@ -70,18 +70,18 @@
 
         console.log("[Svelte] Authorized!");
 
-        initializeUnity();
+        initializeUnity(true);
 
         return { code, channelId: sdk.channelId };
     }
 
-    function initializeUnity() {
+    function initializeUnity(isDiscordEnvironment: boolean) {
         const script = document.createElement("script");
         script.src = "/Build/WebGL.loader.js";
         script.async = true;
 
         script.onload = () => {
-            const cacheBuster = "?v=" + new Date().getTime();
+            const cacheBuster = isDiscordEnvironment ? "?v=" + new Date().getTime() : "";
 
             // @ts-ignore
             createUnityInstance(unityCanvas, {
