@@ -70,7 +70,7 @@
 
         console.log("[Svelte] Authorized!");
 
-        initializeUnity(true);
+        initializeUnity(false);
 
         return { code, channelId: sdk.channelId };
     }

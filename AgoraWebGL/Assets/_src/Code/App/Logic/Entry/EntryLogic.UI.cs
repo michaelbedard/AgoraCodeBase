@@ -71,6 +71,7 @@ namespace _src.Code.App.Logic.Entry
                         var warningPopup = await _uiService.GetOrCreate<WarningPopup>();
                         warningPopup.Title.Label.text = "Unable to leave lobby";
                         warningPopup.Message.text = result.Message;
+                        warningPopup.Show();
                 
                         Debug.Log("Failed to leave lobby");
                     }
@@ -84,9 +85,10 @@ namespace _src.Code.App.Logic.Entry
             else
             {
                 // 4. Failure: Show Warning
-                var warningPopup = await _uiService.GetOrCreate<WarningPopup>();
+                var warningPopup = await _uiService.Create<WarningPopup>();
                 warningPopup.Title.Label.text = "Unable to join lobby";
                 warningPopup.Message.text = result.Message;
+                warningPopup.Show();
                 
                 Debug.Log("Failed to join lobby");
                 
