@@ -47,13 +47,13 @@ namespace _src.Code.Network.HubProxies
             if (_rawConnection != null) await _rawConnection.DisposeAsync();
 
             // 2. Build URL with Query Param
-            var fullUrl = $"{Globals.Instance.ServerUrl}/hub?userId={userId}";
+            var fullUrl = $"{Globals.Instance.ServerUrl}/hub?userId={Uri.EscapeDataString(userId)}";
 
             // 3. Create Connection
             _rawConnection = new HubConnectionBuilder()
                 .WithUrl(fullUrl, options => {
-                    options.Transports = HttpTransportType.WebSockets; 
-                    options.SkipNegotiation = true; 
+                    // options.Transports = HttpTransportType.WebSockets; 
+                    // options.SkipNegotiation = true; 
                 })
                 .ConfigureLogging(logging =>
                 {

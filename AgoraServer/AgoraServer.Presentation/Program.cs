@@ -90,16 +90,18 @@ builder.Services.AddHttpClient();
 
 // Add SignalR support
 builder.Services
-    .AddSignalR(options => 
+    .AddSignalR(options =>
     {
         options.EnableDetailedErrors = true;
-        options.KeepAliveInterval = TimeSpan.FromMinutes(20);;
-        options.HandshakeTimeout = TimeSpan.FromMinutes(20);;
-    })
-    .AddJsonProtocol(options =>
-    {
-        options.PayloadSerializerOptions.Converters.Add(new PolymorphicConverterFactory());
+        options.KeepAliveInterval = TimeSpan.FromMinutes(20);
+        ;
+        options.HandshakeTimeout = TimeSpan.FromMinutes(20);
+        ;
     });
+    // .AddJsonProtocol(options =>
+    // {
+    //     options.PayloadSerializerOptions.Converters.Add(new PolymorphicConverterFactory());
+    // });
 
 // Register HubServices
 builder.Services.AddSingleton<HubProxy>();
