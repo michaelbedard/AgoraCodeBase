@@ -47,7 +47,7 @@ namespace _src.Code.Network.HubProxies
             if (_rawConnection != null) await _rawConnection.DisposeAsync();
 
             // 2. Build URL with Query Param
-            var fullUrl = $"{Globals.Instance.ServerUrl}/hub?userId={Uri.EscapeDataString(userId)}";
+            var fullUrl = $"{Globals.Instance.ServerUrl}/hub?userId={userId}";
 
             // 3. Create Connection
             _rawConnection = new HubConnectionBuilder()
