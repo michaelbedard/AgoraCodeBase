@@ -5,3 +5,25 @@ customHeaders:
         value: "default-src 'self'; worker-src 'self' blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://*.discordsys.com https://*.discordsays.com; connect-src 'self' https://api.agoraboardgames.com wss://api.agoraboardgames.com https://*.discordsays.com https://discord.com https://cdn.discordapp.com; img-src 'self' data: blob: https://cdn.discordapp.com; style-src 'self' 'unsafe-inline';"
       - key: 'Cache-Control'
         value: 'no-cache'
+  - pattern: '**/*.wasm.gz'
+    headers:
+      - key: 'Content-Encoding'
+        value: 'gzip'
+      - key: 'Content-Type'
+        value: 'application/wasm'
+  - pattern: '**/*.js.gz'
+    headers:
+      - key: 'Content-Encoding'
+        value: 'gzip'
+      - key: 'Content-Type'
+        value: 'application/javascript'
+  - pattern: '**/*.data.gz'
+    headers:
+      - key: 'Content-Encoding'
+        value: 'gzip'
+  - pattern: '**/*.symbols.json.gz'
+    headers:
+      - key: 'Content-Encoding'
+        value: 'gzip'
+      - key: 'Content-Type'
+        value: 'application/json'
