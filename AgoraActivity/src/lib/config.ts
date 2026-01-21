@@ -4,6 +4,6 @@ export const config = {
     PRODUCT_NAME: "Just Another Generic Roguelike", // Game Name
     PRODUCT_VERSION: "0.1.0", // Game Version
 
-    COMPRESSION: ".gz", // empty or .gz
+    COMPRESSION: ".unityweb", // empty or .gz
     BUILD_PATH: "/Build",
 };
