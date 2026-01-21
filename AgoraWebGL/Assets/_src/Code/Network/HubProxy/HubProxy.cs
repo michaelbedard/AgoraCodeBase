@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using Zenject;
 using UnityEngine;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace _src.Code.Network.HubProxies
 {
@@ -53,8 +54,9 @@ namespace _src.Code.Network.HubProxies
             _rawConnection = new HubConnectionBuilder()
                 .WithUrl(fullUrl, options => {
                     // options.Transports = HttpTransportType.WebSockets; 
-                    // options.SkipNegotiation = true; 
+                    options.SkipNegotiation = true; 
                 })
+                .AddNewtonsoftJsonProtocol()
                 .ConfigureLogging(logging =>
                 {
                     logging.SetMinimumLevel(LogLevel.Debug);
