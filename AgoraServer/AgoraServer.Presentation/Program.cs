@@ -97,11 +97,16 @@ builder.Services
         ;
         options.HandshakeTimeout = TimeSpan.FromMinutes(20);
         ;
-    });
+    })
     // .AddJsonProtocol(options =>
     // {
     //     options.PayloadSerializerOptions.Converters.Add(new PolymorphicConverterFactory());
     // });
+    .AddNewtonsoftJsonProtocol(options => 
+    {
+        // Optional: specific settings if you have polymorphic types
+        // options.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto; 
+    });
 
 // Register HubServices
 builder.Services.AddSingleton<HubProxy>();
