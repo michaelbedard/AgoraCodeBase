@@ -1,6 +1,6 @@
 ﻿using Agora.Core.Dtos;
 
-namespace Presentation.Proxies;
+namespace Presentation.HubProxy;
 
 public partial class HubProxy
 {

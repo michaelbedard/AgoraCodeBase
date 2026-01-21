@@ -1,23 +1,20 @@
-using Agora.Core.Contracts;
-using Agora.Core.Contracts;
 using Agora.Core.Contracts.Client;
 using Domain.Entities.Runtime;
 using Domain.Interfaces.Proxies;
 using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
-using Presentation.Hub;
 
-namespace Presentation.Proxies;
+namespace Presentation.HubProxy;
 
 public partial class HubProxy : IGameProxy, ILobbyProxy
 {
     private readonly IConnectionService _connectionService;
-    private readonly IHubContext<HubController, IClientContract> _hubContext;
+    private readonly IHubContext<HubController.HubController, IClientContract> _hubContext;
 
     public HubProxy(
         IConnectionService connectionService, 
-        IHubContext<HubController, IClientContract> hubContext)
+        IHubContext<HubController.HubController, IClientContract> hubContext)
     {
         _connectionService = connectionService;
         _hubContext = hubContext;

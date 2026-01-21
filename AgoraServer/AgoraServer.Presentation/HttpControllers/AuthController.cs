@@ -3,11 +3,10 @@ using Agora.Core.Payloads.Http.Auth;
 using Application.Handlers.Auth.Logout;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Presentation.Controllers.Other;
+using Presentation.HttpControllers.Other;
 using LoginRequest = Application.Handlers.Auth.Login.LoginRequest;
 
-namespace Presentation.Controllers;
+namespace Presentation.HttpControllers;
 
 [ApiController]
 [Route("[controller]")]

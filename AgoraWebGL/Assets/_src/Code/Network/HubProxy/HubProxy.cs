@@ -7,6 +7,7 @@ using _src.Code.Core.Interfaces.Services;
 using _src.Code.Network.Controllers;
 using Agora.Core.Contracts.Server;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using Zenject;
 using UnityEngine;
 
@@ -50,6 +51,11 @@ namespace _src.Code.Network.HubProxies
             // 3. Create Connection
             _rawConnection = new HubConnectionBuilder()
                 .WithUrl(fullUrl)
+                .ConfigureLogging(logging =>
+                {
+                    logging.SetMinimumLevel(LogLevel.Debug);
+                    logging.AddProvider(new UnityLoggerProvider());
+                })
                 .WithAutomaticReconnect()
                 .Build();
 

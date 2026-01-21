@@ -4,9 +4,9 @@ using Application.Handlers.Lobby.JoinLobby;
 using Application.Handlers.Lobby.LeaveLobby;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Controllers.Other;
+using Presentation.HttpControllers.Other;
 
-namespace Presentation.Controllers;
+namespace Presentation.HttpControllers;
 
 public class LobbyController : BaseApiController
 {

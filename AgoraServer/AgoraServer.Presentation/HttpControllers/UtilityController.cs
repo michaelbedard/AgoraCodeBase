@@ -1,11 +1,11 @@
 using Agora.Core;
-using Application.Handlers.Utility.GetAllSessions;
+using Application.Handlers.Utility.GetConnectedUsers;
 using Domain.Entities.Runtime;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Presentation.Controllers;
+namespace Presentation.HttpControllers;
 
 [ApiController]
 [Route("[controller]")]

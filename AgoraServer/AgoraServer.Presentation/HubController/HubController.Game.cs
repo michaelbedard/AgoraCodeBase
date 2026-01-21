@@ -2,7 +2,7 @@
 using Application.Handlers.Game.ExecuteAction;
 using Application.Handlers.Game.ExecuteInput;
 
-namespace Presentation.Hub;
+namespace Presentation.HubController;
 
 public partial class HubController
 {

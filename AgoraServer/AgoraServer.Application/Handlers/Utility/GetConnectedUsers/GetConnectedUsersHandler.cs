@@ -4,7 +4,7 @@ using Domain.Interfaces.Services;
 using Domain.Mappers;
 using MediatR;
 
-namespace Application.Handlers.Utility.GetAllSessions;
+namespace Application.Handlers.Utility.GetConnectedUsers;
 
 public class GetConnectedUsersHandler : IRequestHandler<GetConnectedUsersQuery, Result<List<UserDto>>>
 {

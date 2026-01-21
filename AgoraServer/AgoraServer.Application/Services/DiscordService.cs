@@ -5,6 +5,8 @@ using Domain.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+namespace Application.Services;
+
 public class DiscordAuthService : IDiscordAuthService
 {
     private readonly HttpClient _httpClient;

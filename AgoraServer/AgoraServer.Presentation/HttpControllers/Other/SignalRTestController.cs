@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 
-namespace Presentation.Controllers.Other;
+namespace Presentation.HttpControllers.Other;
 
 [ApiController]
 [Route("[controller]")]

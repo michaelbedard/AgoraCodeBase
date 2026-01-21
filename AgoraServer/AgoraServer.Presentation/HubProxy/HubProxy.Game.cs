@@ -1,7 +1,7 @@
 ﻿using Agora.Core.Payloads.Hubs;
 using Domain.Entities.Runtime;
 
-namespace Presentation.Proxies;
+namespace Presentation.HubProxy;
 
 public partial class HubProxy
 {

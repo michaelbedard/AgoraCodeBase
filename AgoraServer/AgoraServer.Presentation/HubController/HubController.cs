@@ -1,13 +1,11 @@
 using Agora.Core.Actors;
+using Agora.Core.Contracts.Client;
 using Domain.Entities.Runtime;
 using Domain.Interfaces.Services;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
-using Agora.Core.Contracts;
-using Agora.Core.Contracts.Client;
-using Serilog.Core;
 
-namespace Presentation.Hub; 
+namespace Presentation.HubController; 
 
 public partial class HubController : Hub<IClientContract>
 {

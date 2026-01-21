@@ -3,8 +3,8 @@ using Application;
 using Domain.Interfaces.Proxies;
 using Infrastructure;
 using Presentation;
-using Presentation.Hub;
-using Presentation.Proxies;
+using Presentation.HubController;
+using Presentation.HubProxy;
 
 // NOTE : for jwt token, follow https://www.youtube.com/watch?v=w8I32UPEvj8
 
