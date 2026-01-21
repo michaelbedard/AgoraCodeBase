@@ -53,7 +53,7 @@ namespace _src.Code.Network.HubProxies
             // 3. Create Connection
             _rawConnection = new HubConnectionBuilder()
                 .WithUrl(fullUrl, options => {
-                    // options.Transports = HttpTransportType.WebSockets; 
+                    options.Transports = HttpTransportType.WebSockets; 
                     options.SkipNegotiation = true; 
                 })
                 .AddNewtonsoftJsonProtocol()

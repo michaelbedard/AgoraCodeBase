@@ -82,7 +82,7 @@ namespace _src.Code
         {
             #if UNITY_EDITOR
             
-            await _appLogic.Login("001", "mock_jade");
+            await _appLogic.Login("001", "mock_jade2");
             
             #endif
         }
