@@ -6,6 +6,7 @@ using _src.Code.Core.Interfaces.Proxies;
 using _src.Code.Core.Interfaces.Services;
 using _src.Code.Network.Controllers;
 using Agora.Core.Contracts.Server;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using Zenject;
@@ -50,7 +51,10 @@ namespace _src.Code.Network.HubProxies
 
             // 3. Create Connection
             _rawConnection = new HubConnectionBuilder()
-                .WithUrl(fullUrl)
+                .WithUrl(fullUrl, options => {
+                    options.Transports = HttpTransportType.WebSockets; 
+                    options.SkipNegotiation = true; 
+                })
                 .ConfigureLogging(logging =>
                 {
                     logging.SetMinimumLevel(LogLevel.Debug);
