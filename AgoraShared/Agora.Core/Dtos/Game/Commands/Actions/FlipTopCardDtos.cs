@@ -1,12 +1,12 @@
 namespace Agora.Core.Dtos.Game.Commands.Actions;
 
-public class FlipDeckTopCardActionDto : CommandDto
+public class FlipTopCardActionDto : CommandDto
 {
     public string DeckId { get; set; }
     public string ZoneId { get; set; }
 }
 
-public class FlipDeckTopCardAnimationDto : FlipDeckTopCardActionDto
+public class FlipTopCardAnimationDto : FlipTopCardActionDto
 {
     public string CardId { get; set; }
 }

@@ -11,6 +11,7 @@ public static class LobbyMapper
         return new LobbyDto
         {
             Id = lobby.Id,
+            GameKey = lobby.GameKey,
             GameIsRunning = lobby.GameIsRunning,
             Players = lobby.Players.Select(player => player.ToUserDto()).ToList()
         };

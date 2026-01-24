@@ -30,7 +30,7 @@ public class ExecuteInputHandler : BaseHandler<ExecuteInputRequest, Result>
         ///////////////////////////////////////////////////////////////////////////
         
         var gameEngine = user.Lobby.GameEngine;
-        gameEngine.PerformInput(user.Username, request.InputId, request.Input);
+        gameEngine.ExecuteInput(user.Username, request.InputId, request.Input);
 
         return Result.Success();
     }

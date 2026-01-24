@@ -6,6 +6,8 @@ using _src.Code.Core.Interfaces.UI;
 using _src.Code.UI.Common;
 using _src.Code.UI.Common.IconButtons;
 using Agora.Core.Dtos;
+using Agora.Core.Enums;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 namespace _src.Code.UI.Scenes.Entry
@@ -14,14 +16,17 @@ namespace _src.Code.UI.Scenes.Entry
     {
         public new class UxmlFactory : UxmlFactory<LobbyView, UxmlTraits> { }
         
+        public event Action<GameKey> GameSelection;
         public event Action StartGameClicked;
         public event Action CancelClicked;
         
         // fields
         private Title _title;
+        private EnumField _enumField;
         private ScrollView _scrollView;
         private PrimaryButton _startGameButton;
         private CloseIcon _cancelBtn;
+        private Label _lobbyId;
         
         /// <summary>
         /// Initialize
@@ -29,19 +34,33 @@ namespace _src.Code.UI.Scenes.Entry
         protected override void InitializeCore()
         {
             _title = Get<Title>();
+            _enumField = Get<EnumField>();
             _scrollView = Get<ScrollView>();
             _startGameButton = Get<PrimaryButton>();
             _cancelBtn = Get<CloseIcon>();
+            _lobbyId = Get<Label>("LobbyId");
             
             // setup
             _startGameButton.Text = "Start Game";
             _startGameButton.Clicked += () => StartGameClicked?.Invoke();
             _cancelBtn.Clicked += () => CancelClicked?.Invoke();
+            
+            _enumField.RegisterValueChangedCallback(evt => 
+            {
+                GameKey selectedKey = (GameKey)evt.newValue;
+                GameSelection?.Invoke(selectedKey);
+            });
         }
 
-        public void SetTitle(string title)
+        public void SetGame(GameKey gameKey)
         {
-            _title.Label.text = title;
+            _title.Label.text = gameKey.ToString();
+            _enumField.value = gameKey;
+        }
+        
+        public void SetLobbyId(string lobbyId)
+        {
+            _lobbyId.text = lobbyId;
         }
         
         public async Task SetPlayers(List<UserDto> players)

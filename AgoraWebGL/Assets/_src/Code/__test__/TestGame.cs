@@ -30,12 +30,8 @@ namespace _src.Code.__test__
         private LoadGamePayload loadGameDto = new LoadGamePayload()
         {
             Title = "ExampleGame",
-            DiagonalPlayerPositionOffset = 1f,
             EnvironmentAddress = "Environments/Outdoor.prefab",
             MusicAddress = "Assets/_src/Audio/439_Goodhaven.mp3",
-            SimplifiedRulesAddress = "Assets/_src/Games/Uno/UnoRules.png", // change
-            CompleteRulesAddresses = new[] { "Assets/_src/Games/Uno/HowToPlayUno.jpg" }, // change
-            InitialCameraPosition = new Vector3(0, 11, -8),
             PlayerUsernameToSeat = new Dictionary<string, int>()
             {
                 { "bob", 0 },

@@ -3,13 +3,16 @@
     <ui:Template name="PlayerRow" src="project://database/Assets/_src/UI/Scenes/Entry/PlayerRow.uxml?fileID=9197481963319205126&amp;guid=13531d33c51a23f4d9a5f41dc54adbfc&amp;type=3#PlayerRow" />
     <ui:Template name="PrimaryButton" src="project://database/Assets/_src/UI/Common/PrimaryButton.uxml?fileID=9197481963319205126&amp;guid=e18142c166cc38c419968607812eb916&amp;type=3#PrimaryButton" />
     <ui:Template name="CloseIcon" src="project://database/Assets/_src/UI/Common/IconButtons/CloseIcon.uxml?fileID=9197481963319205126&amp;guid=8f1a004a0bb45a8479eb95185575602b&amp;type=3#CloseIcon" />
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
     <_src.Code.UI.Scenes.Entry.LobbyView focusable="false" style="flex-grow: 1; align-items: center; justify-content: flex-start; height: 100%;">
         <ui:Instance template="Title" name="Title" style="position: absolute; top: 70px; width: 40%;" />
-        <ui:ScrollView style="flex-grow: 1; height: auto; align-items: center; justify-content: flex-end; padding-top: 300px; padding-right: 300px; padding-bottom: 300px; padding-left: 300px;">
+        <ui:EnumField label="Select Game: " type="Agora.Core.Enums.GameKey, Agora.Core" include-obsolete-values="false" focusable="true" value="Coup" tabindex="1" style="top: 250px; width: 466px; align-items: stretch; justify-content: center;" />
+        <ui:ScrollView style="flex-grow: 1; height: auto; align-items: center; justify-content: flex-end; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 300px; margin-right: 300px; margin-bottom: 300px; margin-left: 300px; top: auto;">
             <ui:Instance template="PlayerRow" name="PlayerRow" />
             <ui:Instance template="PlayerRow" name="PlayerRow" />
         </ui:ScrollView>
         <ui:Instance template="PrimaryButton" name="PrimaryButton" style="flex-grow: 0; width: 1000px; height: auto; position: absolute; bottom: 70px;" />
         <ui:Instance template="CloseIcon" name="CloseIcon" style="position: absolute; bottom: 30px; right: 30px;" />
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LobbyId" class="text" style="position: absolute; bottom: 22px; left: 51px;" />
     </_src.Code.UI.Scenes.Entry.LobbyView>
 </ui:UXML>

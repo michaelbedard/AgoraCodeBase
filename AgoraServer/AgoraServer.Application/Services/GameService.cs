@@ -24,7 +24,7 @@ public class GameService : IGameService
         // 1. Initialize Logic
         lobby.GameEngine = new GameEngine();
         
-        var loadResult = lobby.GameEngine.LoadGame(lobby.GameId, lobby.Players.Select(p => p.ToUserDto()).ToList());
+        var loadResult = lobby.GameEngine.LoadGame(lobby.GameKey, lobby.Players.Select(p => p.ToUserDto()).ToList());
         if (!loadResult.IsSuccess) return Result.Failure(loadResult.Error);
 
         var loadDto = loadResult.Value;
@@ -103,31 +103,31 @@ public class GameService : IGameService
 
     private async Task RunBotAI(GameEngine logic, RuntimeUser bot, UpdateGamePayload payload)
     {
-        try
-        {
-            // Simulate "thinking" time
-            await Task.Delay(Random.Shared.Next(2000, 3000));
-
-            if (payload.Inputs.Any())
-            {
-                var input = payload.Inputs.OrderBy(x => Random.Shared.Next()).First();
-                if (logic.CanPerformInput(bot.Username, input.Id))
-                {
-                    logic.PerformInput(bot.Username, input.Id, 0); 
-                }
-            }
-            else if (payload.Actions.Any())
-            {
-                var action = payload.Actions.OrderBy(x => Random.Shared.Next()).First();
-                if (logic.CanPerformAction(bot.Username, action.Id))
-                {
-                    logic.PerformAction(bot.Username, action.Id);
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"[Bot Error] {bot.Username}: {ex.Message}");
-        }
+        // try
+        // {
+        //     // Simulate "thinking" time
+        //     await Task.Delay(Random.Shared.Next(2000, 3000));
+        //
+        //     if (payload.Input)
+        //     {
+        //         var input = payload.Inputs.OrderBy(x => Random.Shared.Next()).First();
+        //         if (logic.CanPerformInput(bot.Username, input.Id))
+        //         {
+        //             logic.PerformInput(bot.Username, input.Id, 0); 
+        //         }
+        //     }
+        //     else if (payload.Actions.Any())
+        //     {
+        //         var action = payload.Actions.OrderBy(x => Random.Shared.Next()).First();
+        //         if (logic.CanPerformAction(bot.Username, action.Id))
+        //         {
+        //             logic.PerformAction(bot.Username, action.Id);
+        //         }
+        //     }
+        // }
+        // catch (Exception ex)
+        // {
+        //     Console.WriteLine($"[Bot Error] {bot.Username}: {ex.Message}");
+        // }
     }
 }

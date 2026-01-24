@@ -9,8 +9,7 @@ namespace _src.Code.Core.Interfaces.Services
         public string PlayerId { get; set; }
         public int GameId { get; set; }
         public string GameTitle { get; set; }
-        public string SimplifiedRulesAddress { get; set; }
-        public string[] CompleteRulesAddresses { get; set; }
+        public string RulesAddresses { get; set; }
         public Dictionary<string, string> PlayerUsernameToGameModuleId { get; set; }
         public bool IsAgainstComputer { get; set; }
     }

@@ -2,6 +2,7 @@
 using _src.Code.UI.Scenes.Entry;
 using Agora.Core.Actors;
 using Agora.Core.Dtos;
+using Agora.Core.Enums;
 
 namespace _src.Code.App.Logic.Entry
 {
@@ -25,5 +26,13 @@ namespace _src.Code.App.Logic.Entry
              
              return Result.Success();
          }
+        
+        public async Task<Result> GameSelected(GameKey gameKey)
+        {
+            var lobbyView = await _uiService.GetOrCreate<LobbyView>();
+            lobbyView.SetGame(gameKey);
+            
+            return Result.Success();
+        }
     }
 }

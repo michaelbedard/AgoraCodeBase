@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Zenject;
 using UnityEngine;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace _src.Code.Network.HubProxies
 {
@@ -56,7 +57,10 @@ namespace _src.Code.Network.HubProxies
                     options.Transports = HttpTransportType.WebSockets; 
                     options.SkipNegotiation = true; 
                 })
-                .AddNewtonsoftJsonProtocol()
+                .AddNewtonsoftJsonProtocol(options => 
+                {
+                    options.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
+                })
                 .ConfigureLogging(logging =>
                 {
                     logging.SetMinimumLevel(LogLevel.Debug);

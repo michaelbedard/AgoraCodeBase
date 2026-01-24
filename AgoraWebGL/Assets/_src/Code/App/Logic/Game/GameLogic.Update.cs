@@ -17,10 +17,10 @@ namespace _src.Code.App.Logic.Game
                 _signalBus.Fire(new GameAnimationSignal(animation));
             }
             
-            // send inputs
-            foreach (var input in payload.Inputs)
+            // send input
+            if (payload.Input != null)
             {
-                _signalBus.Fire(new GameInputSignal(input));
+                _signalBus.Fire(new GameInputSignal(payload.Input));
             }
             
             // reset allowed actions 
@@ -45,8 +45,8 @@ namespace _src.Code.App.Logic.Game
             // send descriptions
             foreach (var description in payload.Descriptions)
             {
-                var gm = _gameModuleService.GetGameModuleById(description.GameModuleId);
-                gm.Description = description.Description;
+                var gm = _gameModuleService.GetGameModuleById(description.Key);
+                gm.Description = description.Value;
             }
             
             return Result.Success();

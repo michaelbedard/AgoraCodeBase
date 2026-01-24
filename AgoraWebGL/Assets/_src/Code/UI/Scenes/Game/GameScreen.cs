@@ -131,7 +131,7 @@ namespace _src.Code.UI.Scenes.Game
         private async Task OnRulesBtnClick()
         {
             var rulesWindow = await VisualElementService.GetOrCreate<RulesWindow>();
-            await rulesWindow.SetRules(_gameDataService.GameTitle, _gameDataService.CompleteRulesAddresses.ToList());
+            await rulesWindow.SetRules(_gameDataService.GameTitle, _gameDataService.RulesAddresses);
             rulesWindow.Show();
         }
 

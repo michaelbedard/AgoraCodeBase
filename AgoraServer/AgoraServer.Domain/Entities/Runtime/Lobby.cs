@@ -1,5 +1,6 @@
 
 
+using Agora.Core.Enums;
 using Agora.Engine;
 
 namespace Domain.Entities.Runtime
@@ -9,7 +10,7 @@ namespace Domain.Entities.Runtime
         public string Id { get; private set; }
         public GameEngine GameEngine { get; set; }
         public List<RuntimeUser> Players { get; set; }
-        public string GameId { get; set; }
+        public GameKey GameKey { get; set; }
         public bool GameIsRunning { get; set; }
 
         public Lobby(string id)

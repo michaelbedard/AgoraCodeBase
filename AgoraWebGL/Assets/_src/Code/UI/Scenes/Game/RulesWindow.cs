@@ -82,9 +82,9 @@ namespace _src.Code.UI.Scenes.Game
             _currentIndex = 0;
         }
 
-        public async Task SetRules(string title, List<string> rulesAddresses)
+        public async Task SetRules(string title, string rulesAddress)
         {
-            _rulesAddresses = rulesAddresses;
+            _rulesAddresses = new List<string>() {rulesAddress};
             _title.Label.text = $"{title}'s Rules";
             
             UpdatePages();

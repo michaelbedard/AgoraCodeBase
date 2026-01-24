@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Agora.Core\Agora.Core.csproj" />
+      <ProjectReference Include="..\Agora.Engine\Agora.Engine.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -92,13 +92,9 @@ namespace _src.Code.Game.Other
             
             Container.Bind<DrawCard>().AsSingle().NonLazy();
             Container.Bind<FlipTopCard>().AsSingle().NonLazy();
-            Container.Bind<ReturnCardToDeck>().AsSingle().NonLazy();
             Container.Bind<PlayCard>().AsSingle().NonLazy();
             Container.Bind<ActivateCard>().AsSingle().NonLazy();
-            Container.Bind<ActivateZone>().AsSingle().NonLazy();
             Container.Bind<PlayCardInsideZone>().AsSingle().NonLazy();
-            Container.Bind<MoveMarker>().AsSingle().NonLazy();
-            Container.Bind<RollDice>().AsSingle().NonLazy();
             Container.Bind<TransferToken>().AsSingle().NonLazy();
             // Container.Bind<ReplacePlayerHand>().AsSingle().NonLazy();
             // Container.Bind<RotatePlayerHands>().AsSingle().NonLazy();

@@ -11,16 +11,19 @@ namespace _src.Code.App.Logic.Entry
     {
         private readonly IVisualElementService _uiService;
         private readonly ILobbyHttpProxy _lobbyHttpProxy;
+        private readonly IHubProxy _hubProxy;
         private readonly IClientDataService _clientDataService;
 
         public EntryLogic(
             IVisualElementService uiService,
             ILobbyHttpProxy lobbyHttpProxy,
+            IHubProxy hubProxy,
             IClientDataService clientDataService,
             IHubController hubController)
         {
             _uiService = uiService;
             _lobbyHttpProxy = lobbyHttpProxy;
+            _hubProxy = hubProxy;
             _clientDataService = clientDataService;
             
             // for now...

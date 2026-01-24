@@ -2,6 +2,7 @@
 using _src.Code.Core.Utility;
 using Agora.Core.Contracts.Client;
 using Agora.Core.Dtos;
+using Agora.Core.Enums;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace _src.Code.Network.Controllers
@@ -12,6 +13,7 @@ namespace _src.Code.Network.Controllers
         {
             connection.On<UserDto>(nameof(UserJoinedLobby), UserJoinedLobby);
             connection.On<string>(nameof(UserLeavedLobby), UserLeavedLobby);
+            connection.On<GameKey>(nameof(GameSelected), GameSelected);
         }
 
         public async Task UserJoinedLobby(UserDto userDto)
@@ -27,6 +29,14 @@ namespace _src.Code.Network.Controllers
             await UnityMainThreadDispatcher.Instance().EnqueueAsync(async () =>
             {
                 await _entryLogic.PlayerLeaveLobby(userId);
+            });
+        }
+        
+        public async Task GameSelected(GameKey gameKey)
+        {
+            await UnityMainThreadDispatcher.Instance().EnqueueAsync(async () =>
+            {
+                await _entryLogic.GameSelected(gameKey);
             });
         }
     }

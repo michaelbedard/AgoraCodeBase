@@ -1,11 +1,17 @@
 ﻿using Agora.Core.Actors;
 using Agora.Core.Dtos;
+using Agora.Core.Enums;
 using Agora.Core.Payloads.Hubs;
+using Agora.Engine.Games;
+using Agora.Engine.Games.Uno;
 
 namespace Agora.Engine;
 
 public class GameEngine
 {
+    private IGame _activeGame;
+    private bool _isGameRunning;
+    
     /// <summary>
     /// Events
     /// </summary>
@@ -16,9 +22,28 @@ public class GameEngine
     /// <summary>
     /// LoadGame
     /// </summary>
-    public Result<LoadGamePayload> LoadGame(string gameId, List<UserDto> players, bool verboseMode = false)
+    public Result<LoadGamePayload> LoadGame(GameKey gameKey, List<UserDto> players, bool verboseMode = false)
     {
-        throw new NotImplementedException();
+        // 1. Factory Logic: Switch on the Game ID to load rules
+        switch (gameKey)
+        {
+            case GameKey.Uno:
+                _activeGame = new Uno();
+                break;
+            case GameKey.Coup:
+                // _activeGame = new ChessGameLogic();
+                break;
+            case GameKey.LoveLetter:
+                // _activeGame = new ChessGameLogic();
+                break;
+            default:
+                return Result<LoadGamePayload>.Failure("Game Key not found.");
+        }
+
+        // 2. Initialize the game state
+        var loadGamePayload = _activeGame.LoadGame(players);
+        
+        return Result<LoadGamePayload>.Success(loadGamePayload);
     }
 
     /// <summary>
@@ -26,39 +51,49 @@ public class GameEngine
     /// </summary>
     public void StartGame()
     {
+        if (_activeGame == null)
+        {
+            OnError?.Invoke("No game loaded.");
+            return;
+        }
+
+        _isGameRunning = true;
+        _activeGame.StartGame();
+        BroadcastGameState();
+    }
+
+    public void ExecuteAction(string playerUsername, int actionCommandId)
+    {
+        if (!_activeGame.CanPerformAction(playerUsername, actionCommandId)) 
+        {
+            OnError?.Invoke("Invalid Action Attempted");
+            return;
+        }
+
+        _activeGame.ExecuteAction(playerUsername, actionCommandId);
+        BroadcastGameState();
+    }
+
+    public void ExecuteInput(string playerUsername, int inputCommandId, object answer)
+    {
+        if (!_activeGame.CanExecuteInput(playerUsername, inputCommandId))
+        {
+            OnError?.Invoke("Invalid Input Attempted");
+            return;
+        }
         
-    }
-
-    /// <summary>
-    /// CanPerformAction
-    /// </summary>
-    public bool CanPerformAction(string playerUsername, int actionCommandId)
-    {
-        return false;
-    }
-
-    /// <summary>
-    /// PerformAction
-    /// </summary>
-    public void PerformAction(string playerUsername, int actionCommandId)
-    {
-        
-    }
-
-    /// <summary>
-    /// CanPerformInput
-    /// </summary>
-    public bool CanPerformInput(string playerUsername, int inputCommandId)
-    {
-        return false;
-    }
-
-    /// <summary>
-    /// PerformInput
-    /// </summary>
-    public void PerformInput(string playerUsername, int inputCommandId, object answer)
-    {
-        
+        _activeGame.ExecuteInput(playerUsername, inputCommandId, answer);
+        BroadcastGameState();
     }
     
+    /// <summary>
+    /// Helper to get the state from the logic and fire the event
+    /// </summary>
+    private void BroadcastGameState()
+    {
+        if (_activeGame == null) return;
+
+        var playerStates = _activeGame.GetUpdateGamePayload();
+        OnUpdateGame?.Invoke(playerStates);
+    }
 }

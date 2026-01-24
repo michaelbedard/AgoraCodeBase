@@ -67,18 +67,18 @@ namespace _src.Code.App.Logic.Game
             // await startGameScreen.SetSimplifiedRule(loadData.SimplifiedRulesAddress);
             
             var rulesWindow = await _visualElementService.GetOrCreate<RulesWindow>();
-            await rulesWindow.SetRules(loadData.Title, loadData.CompleteRulesAddresses.ToList());
+            await rulesWindow.SetRules(loadData.Title, loadData.RulesAddress);
             
             // Setup board image
-            if (!string.IsNullOrWhiteSpace(loadData.BoardAddress))
-            {
-                var boardImage = await Addressables.LoadAssetAsync<Sprite>(loadData.BoardAddress).Task;
-                var boardImageObject = new GameObject("boardImage");
-                boardImageObject.transform.localScale = new Vector3(2f, 2f, 2f);
-                boardImageObject.AddComponent<SpriteRenderer>().sprite = boardImage;
-                _boardPlaneService.AddCommonElement(boardImageObject.transform, Vector2.zero, offset: 0.1f);
-                boardImageObject.transform.localRotation = Quaternion.Euler(90f, 0f, 0f); // after
-            }
+            // if (!string.IsNullOrWhiteSpace(loadData.BoardAddress))
+            // {
+            //     var boardImage = await Addressables.LoadAssetAsync<Sprite>(loadData.BoardAddress).Task;
+            //     var boardImageObject = new GameObject("boardImage");
+            //     boardImageObject.transform.localScale = new Vector3(2f, 2f, 2f);
+            //     boardImageObject.AddComponent<SpriteRenderer>().sprite = boardImage;
+            //     _boardPlaneService.AddCommonElement(boardImageObject.transform, Vector2.zero, offset: 0.1f);
+            //     boardImageObject.transform.localRotation = Quaternion.Euler(90f, 0f, 0f); // after
+            // }
             
             // get client profile and seat
             var clientProfile = loadData.Players.Find(p => p.Username == _clientDataService.Username);
@@ -106,20 +106,22 @@ namespace _src.Code.App.Logic.Game
                     
                     if (gameModuleLoadData.IsPlayerModule)
                     {
-                        var seatDistance = gameModuleLoadData.Seat - clientSeat;
+                        // var seatDistance = gameModuleLoadData.Seat - clientSeat;
+
+                        var seatDistance = 1;
 
                         var radiusOffset = 0f;
-                        if (seatDistance != 0)
-                        {
-                            if (numberOfPlayers == 3)
-                            {
-                                radiusOffset = loadData.DiagonalPlayerPositionOffset;
-                            } 
-                            if (numberOfPlayers == 4 && Mathf.Abs(seatDistance) != 2)
-                            {
-                                radiusOffset = loadData.HorizontalPlayerPositionOffset;
-                            }
-                        }
+                        // if (seatDistance != 0)
+                        // {
+                        //     if (numberOfPlayers == 3)
+                        //     {
+                        //         radiusOffset = loadData.DiagonalPlayerPositionOffset;
+                        //     } 
+                        //     if (numberOfPlayers == 4 && Mathf.Abs(seatDistance) != 2)
+                        //     {
+                        //         radiusOffset = loadData.HorizontalPlayerPositionOffset;
+                        //     }
+                        // }
                         
                         _boardPlaneService.AddPlayerElement(transform, position, loadData.Players.Count, seatDistance, offset:offset, radiusOffset:radiusOffset);
                     }
@@ -174,10 +176,7 @@ namespace _src.Code.App.Logic.Game
             }
             
             // set camera position
-            var initialCameraPosition = loadData.InitialCameraPosition != System.Numerics.Vector3.Zero
-                ? new Vector3(loadData.InitialCameraPosition.X, loadData.InitialCameraPosition.Y,
-                    loadData.InitialCameraPosition.Z)
-                : new Vector3(0, 20, -12);
+            var initialCameraPosition = new Vector3(0, 20, -12);
             
             _cameraManager.Initialize(initialCameraPosition);
             

@@ -9,7 +9,7 @@ using Zenject;
 
 namespace _src.Code.Game.Commands.GameActions
 {
-    public class FlipTopCard : BaseAction<FlipDeckTopCardActionDto, FlipDeckTopCardAnimationDto>
+    public class FlipTopCard : BaseAction<FlipTopCardActionDto, FlipTopCardAnimationDto>
     {
         private const float CardTransitionTime = 1f;
         
@@ -20,14 +20,14 @@ namespace _src.Code.Game.Commands.GameActions
         }
         
         // allow
-        protected override void AllowCore(FlipDeckTopCardActionDto action)
+        protected override void AllowCore(FlipTopCardActionDto action)
         {
             var deck = GameModuleService.GetGameModuleById(action.DeckId);
             deck.ClickActions.Add(new ClickAction(action));
         }
         
         // animate
-        protected override void AnimateCore(FlipDeckTopCardAnimationDto animation)
+        protected override void AnimateCore(FlipTopCardAnimationDto animation)
         {
             AnimationQueueService.Push(async () =>
             {

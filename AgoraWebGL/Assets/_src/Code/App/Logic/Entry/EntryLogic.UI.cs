@@ -3,6 +3,9 @@ using _src.Code.UI.Common;
 using _src.Code.UI.Scenes.Entry;
 using _src.Code.UI.Shared;
 using Agora.Core.Dtos.Lobby;
+using Agora.Core.Enums;
+using Agora.Core.Payloads.Http.Lobby;
+using Agora.Core.Payloads.Hubs;
 using UnityEngine;
 
 namespace _src.Code.App.Logic.Entry
@@ -51,12 +54,18 @@ namespace _src.Code.App.Logic.Entry
                 
                 // 3. Success: Show Lobby View
                 var lobbyView = await _uiService.GetOrCreate<LobbyView>();
-                lobbyView.SetTitle(result.Data.Id);
+                lobbyView.SetGame(result.Data.GameKey);
+                lobbyView.SetLobbyId(result.Data.Id);
                 await lobbyView.SetPlayers(result.Data.Players);
+
+                lobbyView.GameSelection += async (GameKey gameKey) =>
+                {
+                    await _hubProxy.SelectGame(new SelectGamePayload() { GameKey = gameKey });
+                };
 
                 lobbyView.StartGameClicked += async () =>
                 {
-                    throw new NotImplementedException();
+                    await _hubProxy.LaunchGame(new LaunchGamePayload() { GameKey = result.Data.GameKey });
                 };
                 
                 lobbyView.CancelClicked += async () =>

@@ -1,5 +1,6 @@
 using Agora.Core.Actors;
 using Agora.Core.Contracts.Client;
+using Agora.Core.Contracts.Server;
 using Domain.Entities.Runtime;
 using Domain.Interfaces.Services;
 using MediatR;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace Presentation.HubController; 
 
-public partial class HubController : Hub<IClientContract>
+public partial class HubController : Hub<IClientContract>, IServerContract
 {
     private readonly ISessionService _sessionService;
     private readonly IConnectionService _connectionService;

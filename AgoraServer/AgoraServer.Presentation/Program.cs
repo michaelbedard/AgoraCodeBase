@@ -2,6 +2,7 @@ using Agora.Core.Settings;
 using Application;
 using Domain.Interfaces.Proxies;
 using Infrastructure;
+using Newtonsoft.Json;
 using Presentation;
 using Presentation.HubController;
 using Presentation.HubProxy;
@@ -104,8 +105,7 @@ builder.Services
     // });
     .AddNewtonsoftJsonProtocol(options => 
     {
-        // Optional: specific settings if you have polymorphic types
-        // options.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto; 
+        options.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto; 
     });
 
 // Register HubServices
