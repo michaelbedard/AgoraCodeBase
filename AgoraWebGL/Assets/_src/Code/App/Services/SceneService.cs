@@ -111,7 +111,14 @@ namespace _src.Code.App.Services
 
                     await LoadAdditiveScene();
                 
-                    _signalBus.Fire<SceneReadySignal>();
+                    Debug.Log($"Scene '{sceneName}' loaded");
+
+                    if (callback != null)
+                    {
+                        await callback();
+                    }
+
+                    await FadeManager.Instance.FadeOut();
                 }
                 catch (Exception e)
                 {
@@ -119,16 +126,6 @@ namespace _src.Code.App.Services
                     throw;
                 }
             });
-            
-            await _signalBus.WaitFor<SceneReadySignal>();
-            
-            Debug.Log($"Scene '{sceneName}' loaded");
-
-            if (callback != null)
-            {
-                await callback();
-            }
-            await FadeManager.Instance.FadeOut();
         }
     }
 }

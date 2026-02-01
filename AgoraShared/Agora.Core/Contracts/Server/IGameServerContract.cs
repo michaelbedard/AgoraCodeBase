@@ -8,6 +8,7 @@ public interface IGameServerContract
     // game
     Task SelectGame(SelectGamePayload payload);
     Task LaunchGame(LaunchGamePayload payload);
+    Task ReadyToStart();
     Task ExecuteAction(ExecuteActionPayload executeActionPayload);
     Task ExecuteInput(ExecuteInputPayload executeInputPayload);
 }

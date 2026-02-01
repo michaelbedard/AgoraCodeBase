@@ -11,7 +11,7 @@ var showDetails = true;
 var players = new List<UserDto>
 {
     new UserDto { Id = "p1", Username = "Alice" },
-    new UserDto { Id = "p2", Username = "Bob" }
+    // new UserDto { Id = "p2", Username = "Bob" }
 };
 
 
@@ -49,7 +49,10 @@ if (!loadResult.IsSuccess)
     return;
 }
 
-string json = JsonConvert.SerializeObject(loadResult.Value, Formatting.Indented);
+string json = JsonConvert.SerializeObject(loadResult.Value, Formatting.Indented, new JsonSerializerSettings {
+    TypeNameHandling = TypeNameHandling.Auto
+});
+
 Console.WriteLine(json);
 
 // 5. Start Game

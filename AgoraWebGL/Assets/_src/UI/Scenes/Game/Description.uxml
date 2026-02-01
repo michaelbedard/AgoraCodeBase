@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Scenes.Game.Description focusable="false" picking-mode="Ignore" style="align-items: flex-end; justify-content: flex-end; visibility: visible; display: flex; overflow: visible; position: absolute; width: 100%; height: 100%;">
+        <ui:VisualElement name="Container" focusable="true" style="flex-grow: 0; width: 600px; height: 250px; background-image: url(&quot;project://database/Assets/_src/Sprites/Panels/popup_bg_03.png?fileID=21300000&amp;guid=2b87e69b1a02a004d805b4599d641474&amp;type=3#popup_bg_03&quot;); align-self: auto; align-items: center; position: absolute; bottom: 50px; right: auto; left: 50px;">
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="text" style="flex-grow: 1; -unity-text-align: middle-center; margin-top: 18px; height: 13px; -unity-font-style: bold;" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Content" class="text text-small" style="color: rgb(255, 255, 255); -unity-text-align: middle-center; flex-grow: 2; width: 100%; padding-top: 0; padding-right: 25px; padding-bottom: 25px; padding-left: 25px; margin-bottom: 17px;" />
+        </ui:VisualElement>
+    </_src.Code.UI.Scenes.Game.Description>
+</ui:UXML>

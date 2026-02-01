@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using _src.Code.Core.Interfaces.Factories;
 using _src.Code.Core.Interfaces.GameModules;
+using _src.Code.Core.Interfaces.Services;
 using _src.Code.Game.Modules.Deck;
 using Agora.Core.Dtos.Game.GameModules;
 using UnityEngine;
@@ -35,6 +36,16 @@ namespace _src.Code.Game.Factories
             }
 
             deck.CanBeDrag = false;
+
+            // child game modules
+            foreach (var cardDto in loadData.Cards)
+            {
+                var card = await GameModuleService.InstantiateGameModuleAsync<ICard>(cardDto);
+                deck.Cards.Add(card);
+                
+                // change this later
+                card.Transform.position = new Vector3(0, 0, 40f);
+            }
 
             return deck;
         }

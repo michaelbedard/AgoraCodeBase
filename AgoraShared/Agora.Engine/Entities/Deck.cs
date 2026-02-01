@@ -13,8 +13,8 @@ public class Deck : DeckDto, IGameModule
         {
             Id = Id,
             Name = Name,
-            Type = Type,
             Color = Color,
+            Position = Position,
             TopImage = TopImage,
             Cards = Cards.Select(card => card.ToDto() as CardDto).ToList(),
         };

@@ -1,4 +1,6 @@
+using _src.Code.Core.Actors;
 using _src.Code.Core.Interfaces.GameModules;
+using _src.Code.Core.Interfaces.Services;
 using DG.Tweening;
 using UnityEngine;
 
@@ -26,6 +28,12 @@ namespace _src.Code.Game.Modules.Card
                 {
                     // we are hovering card in hand
                     
+                    // check if it's our card
+                    if (Model.Hand.PlayerId != ServiceLocator.GetService<IClientDataService>().Id)
+                    {
+                        return;
+                    }
+                    
                     // make card transparent
                     CanvasGroup.alpha = 0f;
                 
@@ -35,7 +43,7 @@ namespace _src.Code.Game.Modules.Card
                     _previewCard.DisableGlow();
                 
                     // get target transform
-                    var targetTransform = Model.Hand.GetTransformInFront(this, 0.8f, true, true);
+                    var targetTransform = Model.Hand.GetTransformInFront(this, 0.6f, true, true);
                 
                     // copy position, rotation and scale
                     var previewCardTransform = _previewCard.Transform;

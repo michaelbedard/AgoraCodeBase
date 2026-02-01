@@ -8,10 +8,14 @@
     import { DiscordSDK } from "@discord/embedded-app-sdk";
     import { PUBLIC_DISCORD_CLIENT_ID } from '$env/static/public';
     import { page } from "$app/stores";
+    import { fade } from 'svelte/transition';
 
     let unityCanvas: HTMLCanvasElement;
     let discordSdk: DiscordSDK;
     let debugError = "";
+
+    let isLoading = true;
+    let loadingProgress = 0;
 
     onMount(() => {
         const queryParams = $page.url.searchParams;
@@ -80,6 +84,12 @@
         script.src = "/Build/WebGL.loader.js";
         script.async = true;
 
+        // 1. Start a fake progress interval
+        // It increases fast at first, then slows down as it gets closer to 90%
+        const progressInterval = setInterval(() => {
+            loadingProgress += (90 - loadingProgress) * 0.1;
+        }, 100);
+
         script.onload = () => {
             const cacheBuster = isDiscordEnvironment ? "?v=" + new Date().getTime() : "";
 
@@ -92,16 +102,37 @@
                 companyName: config.COMPANY_NAME,
                 productName: config.PRODUCT_NAME,
                 productVersion: config.PRODUCT_VERSION,
+                onProgress: (p: number) => {
+                    // Only use real progress if it's actually working (greater than our fake value)
+                    const realProgress = p * 100;
+                    if (realProgress > loadingProgress) {
+                        loadingProgress = realProgress;
+                    }
+                },
             }).then((instance: any) => {
+                // 2. Clear the fake timer
+                clearInterval(progressInterval);
+
+                // 3. Force 100% and hide
+                loadingProgress = 100;
                 window.unityInstance = instance;
                 console.log("[Svelte] Unity Instance Loaded.");
+
+                setTimeout(() => {
+                    isLoading = false;
+                }, 500);
+
             }).catch((error: any) => {
+                clearInterval(progressInterval);
                 logError(error);
+                isLoading = false;
             });
         };
 
         script.onerror = () => {
             logError("Failed to load WebGL.loader.js script.");
+            clearInterval(progressInterval);
+            isLoading = false;
         }
 
         document.body.appendChild(script);
@@ -115,6 +146,14 @@
 </script>
 
 <div class="container">
+
+    {#if isLoading}
+        <div class="loading-overlay" transition:fade={{ duration: 1000 }}>
+            <div class="spinner"></div>
+            <p>Loading... {Math.round(loadingProgress)}%</p>
+        </div>
+    {/if}
+
     <canvas
             bind:this={unityCanvas}
             id="unity-canvas"
@@ -162,5 +201,34 @@
         z-index: 100;
         text-align: left;
         font-family: monospace;
+    }
+
+    /*loading*/
+
+    .loading-overlay {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 50; /* Ensure it sits on top of canvas */
+    }
+
+    .spinner {
+        width: 40px; height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top: 4px solid #fff;
+        animation: spin 1s linear infinite;
+        margin-bottom: 15px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 </style>

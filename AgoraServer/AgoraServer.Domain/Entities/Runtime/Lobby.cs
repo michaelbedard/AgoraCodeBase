@@ -9,6 +9,7 @@ namespace Domain.Entities.Runtime
     {
         public string Id { get; private set; }
         public GameEngine GameEngine { get; set; }
+        public List<RuntimeUser> PlayersReady { get; set; }
         public List<RuntimeUser> Players { get; set; }
         public GameKey GameKey { get; set; }
         public bool GameIsRunning { get; set; }
@@ -16,6 +17,7 @@ namespace Domain.Entities.Runtime
         public Lobby(string id)
         {
             Id = id;
+            PlayersReady = new List<RuntimeUser>();
             Players = new List<RuntimeUser>();
         }
     }

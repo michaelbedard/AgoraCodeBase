@@ -10,18 +10,15 @@ namespace _src.Code.Game.Commands.Other
 {
     public class ShowMessage : BaseAnimation<ShowMessageCommandDto>
     {
-        private readonly IGameDataService _gameDataService;
         private readonly IVisualElementService _visualElementService;
         
         public ShowMessage(
             SignalBus signalBus,
             IAnimationQueueService animationQueueService,
             IGameModuleService gameModuleService,
-            IGameDataService gameDataService,
             IVisualElementService visualElementService) 
             : base(signalBus, animationQueueService, gameModuleService)
         {
-            _gameDataService = gameDataService;
             _visualElementService = visualElementService;
         }
 

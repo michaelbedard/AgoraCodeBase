@@ -14,6 +14,7 @@ namespace _src.Code.App.Services
             { 0, "Assets/_src/Prefabs/Characters/Witch.prefab" },
             { 1, "Assets/_src/Prefabs/Characters/Skeleton.prefab" },
             { 2, "Assets/_src/Prefabs/Characters/Ghoul.prefab" },
+            { 3, "Assets/_src/Prefabs/Characters/Necromancer.prefab" },
         };
 
         [Inject]

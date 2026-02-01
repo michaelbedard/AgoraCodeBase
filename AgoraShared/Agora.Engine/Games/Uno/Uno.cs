@@ -1,4 +1,5 @@
-﻿using Agora.Engine.Commands.Inputs;
+﻿using Agora.Core.Actors;
+using Agora.Engine.Commands.Inputs;
 using Agora.Engine.Entities;
 using Agora.Engine.Entities.@base;
 
@@ -24,11 +25,14 @@ public partial class Uno : BaseGame
         {
             Name = "DrawingDeck", 
             Color = "#228B22", 
+            TopImage = "Assets/_src/Games/Uno/back.png",
+            Position = new Position(-2, 0),
             Cards = GenerateUnoDeck()
         };
         _discardPile = new Zone()
         {
-            Name = "DiscardPile"
+            Name = "DiscardPile",
+            Position = new Position(2, 0),
         };
 
         return new List<IGameModule>() { _deck, _discardPile };
@@ -85,10 +89,6 @@ public partial class Uno : BaseGame
         for (int i = 0; i < 4; i++)
         {
             cards.Add(new WildCard());
-            cards.Add(new WildCard());
-            cards.Add(new WildCard());
-            cards.Add(new WildCard());
-            cards.Add(new WildCard());
             cards.Add(new PlusFourCard());
         }
 
@@ -107,7 +107,8 @@ public partial class Uno : BaseGame
             Value = value;
             Color = color;
             Name = $"{value}_{color}";
-            FrontImage = $"Assets/Cards/{Name}.png";
+            FrontImage = $"Assets/_src/Games/Uno/{Color}/{Name}.png";
+            BackImage = "Assets/_src/Games/Uno/back.png";
         }
     }
     
@@ -157,7 +158,7 @@ public partial class Uno : BaseGame
         public WildCard() : base(13, "black") 
         { 
             Name = "wild_black";
-            FrontImage = "Assets/Cards/wild.png";
+            FrontImage = "Assets/_src/Games/Uno/black/wild.png";
         }
 
         public override async Task ApplyEffectAsync(Uno game)
@@ -167,10 +168,10 @@ public partial class Uno : BaseGame
             Console.WriteLine("PLAYED WILD");
 
             var result = await game.Ask(new CardChoice(player, [
-                new Card() { Name = "Red", FrontImage = "Assets/cards/empty_red.png" },
-                new Card() { Name = "Blue", FrontImage = "Assets/cards/empty_blue.png" },
-                new Card() { Name = "Green", FrontImage = "Assets/cards/empty_green.png" },
-                new Card() { Name = "Yellow", FrontImage = "Assets/cards/empty_yellow.png" }
+                new Card() { Name = "Red", FrontImage = "Assets/_src/Games/Uno/empty_red.png" },
+                new Card() { Name = "Blue", FrontImage = "Assets/_src/Games/Uno/empty_blue.png" },
+                new Card() { Name = "Green", FrontImage = "Assets/_src/Games/Uno/empty_green.png" },
+                new Card() { Name = "Yellow", FrontImage = "Assets/_src/Games/Uno/empty_yellow.png" }
             ]));
             
             game._activeColor = result.Name.ToLower();
@@ -183,7 +184,7 @@ public partial class Uno : BaseGame
         public PlusFourCard() : base(14, "black") 
         { 
             Name = "+4_black"; 
-            FrontImage = "Assets/Cards/plus4.png";
+            FrontImage = "Assets/_src/Games/Uno/black/plus4.png";
         }
 
         public override async Task ApplyEffectAsync(Uno game)
@@ -191,10 +192,10 @@ public partial class Uno : BaseGame
             var player = game.Players[game._currentPlayerIndex];
             
             var result = await game.Ask(new CardChoice(player, [
-                new Card() { Name = "Red", FrontImage = "Assets/cards/empty_red.png" },
-                new Card() { Name = "Blue", FrontImage = "Assets/cards/empty_blue.png" },
-                new Card() { Name = "Green", FrontImage = "Assets/cards/empty_green.png" },
-                new Card() { Name = "Yellow", FrontImage = "Assets/cards/empty_yellow.png" }
+                new Card() { Name = "Red", FrontImage = "Assets/_src/Games/Uno/empty_red.png" },
+                new Card() { Name = "Blue", FrontImage = "Assets/_src/Games/Uno/empty_blue.png" },
+                new Card() { Name = "Green", FrontImage = "Assets/_src/Games/Uno/empty_green.png" },
+                new Card() { Name = "Yellow", FrontImage = "Assets/_src/Games/Uno/empty_yellow.png" }
             ]));
             
             game._activeColor = result.Name.ToLower();

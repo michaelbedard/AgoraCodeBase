@@ -13,7 +13,6 @@ public class Zone : ZoneDto, IGameModule
         {
             Id = Id,
             Name = Name,
-            Type = Type,
             Width = Width,
             Height = Height,
             StackingMethod = StackingMethod,

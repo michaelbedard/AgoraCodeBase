@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using _src.Code.Core.Interfaces.Managers;
 using _src.Code.Core.Interfaces.Services;
@@ -16,7 +15,8 @@ namespace _src.Code.Game
         private readonly IInputManager _inputManager;
         private readonly IVisualElementService _visualElementService;
         private readonly IGameModuleService _gameModuleService;
-        private readonly IGameDataService _gameDataService;
+        [Inject]
+        private readonly IClientDataService _clientDataService;
 
         private bool _isRunning;
         private bool _panelIsShowing;
@@ -26,25 +26,22 @@ namespace _src.Code.Game
         public DescriptionManager(
             IInputManager inputManager, 
             IVisualElementService visualElementService, 
-            IGameDataService gameDataService,
             IGameModuleService gameModuleService)
         {
             _inputManager = inputManager;
             _visualElementService = visualElementService;
-            _gameDataService = gameDataService;
             _gameModuleService = gameModuleService;
         }
         
         public async Task Start()
         {
-            var gameScreen = await _visualElementService.GetOrCreate<GameScreen>();
-            _description = gameScreen.Description;
+            _description = await _visualElementService.GetOrCreate<Description>();
             
-            _description.Title = string.Empty;
-            _description.Content = string.Empty;
-            _description.parent.style.display = DisplayStyle.Flex;
+            _visualElementService.AddToRootElement(_description.parent);
+            _description.parent.pickingMode = PickingMode.Ignore;
+            _description.parent.focusable = false;
             
-            _visualElementService.Hide(_description.parent);
+            _description.Container.transform.scale = Vector3.zero;
             
             _isRunning = true;
             _panelIsShowing = false;
@@ -52,8 +49,7 @@ namespace _src.Code.Game
         
         public void Stop()
         {
-            _description.Content = string.Empty;
-            _description.parent.style.display = DisplayStyle.None;
+            HidePanel();
             
             _isRunning = false;
             _panelIsShowing = false;
@@ -82,14 +78,13 @@ namespace _src.Code.Game
                     if (string.IsNullOrWhiteSpace(model.Description))
                     {
                         // unless it's opponent hand
-                        if (inputObject is CardModel card && card.Hand != null &&
-                            _gameDataService.PlayerId != card.Hand.PlayerId)
+                        if (inputObject is CardModel card && card.Hand != null && _clientDataService.Id != card.Hand.PlayerId)
                         {
-                            var player = _gameModuleService.GetGameModuleById(card.Hand.PlayerId);
-                            if (!string.IsNullOrWhiteSpace(player.Description))
+                            if (!string.IsNullOrWhiteSpace(card.Hand.Description))
                             {
-                                // show opponent description
-                                ShowPanel(player.Name, player.Description);
+                                var playerUsername = _clientDataService.Players.Find(p => p.Id == card.Hand.PlayerId).Username;
+                                ShowPanel(playerUsername, card.Hand.Description);
+                                
                                 return;
                             }
                         }
@@ -110,24 +105,20 @@ namespace _src.Code.Game
         {
             if (!_panelIsShowing)
             {
-                _visualElementService.Show(_description.parent);
+                _visualElementService.Show(_description.Container);
                 _panelIsShowing = true;
             }
             
-            _description.Title = title;
-            _description.Content = description;
+            _description.Setup(title, description);
         }
 
         private void HidePanel()
         {
             if (_panelIsShowing)
             {
-                _visualElementService.Hide(_description.parent);
+                _visualElementService.Hide(_description.Container);
                 _panelIsShowing = false;
             }
-            
-            _description.Title = string.Empty;
-            _description.Content = string.Empty;
         }
     }
 }

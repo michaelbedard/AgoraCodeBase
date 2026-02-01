@@ -5,7 +5,7 @@ using Agora.Core.Dtos;
 using Agora.Core.Enums;
 using Microsoft.AspNetCore.SignalR.Client;
 
-namespace _src.Code.Network.Controllers
+namespace _src.Code.Network.HubController
 {
     public partial class HubController : ILobbyClientContract
     {

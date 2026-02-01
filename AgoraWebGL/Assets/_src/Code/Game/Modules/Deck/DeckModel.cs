@@ -23,6 +23,7 @@ namespace _src.Code.Game.Modules.Deck
         public DeckModel()
         {
             Type = GameModuleType.Deck;
+            _cards = new ObservableCollection<ICard>();
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using _src.Code.Core.Actors;
-using _src.Code.Core.Interfaces.Handlers;
+using _src.Code.Core.Interfaces.Logic;
 using _src.Code.Core.Interfaces.Proxies;
 using _src.Code.Core.Interfaces.Services;
 using _src.Code.Core.Utility;
@@ -9,11 +9,12 @@ using Microsoft.AspNetCore.SignalR.Client;
 using UnityEngine;
 using Zenject;
 
-namespace _src.Code.Network.Controllers
+namespace _src.Code.Network.HubController
 {
     public partial class HubController : IHubController
     {
         private IEntryLogic _entryLogic;
+        private IGameLogic _gameLogic;
 
         // Partial hooks
         partial void RegisterGameListeners(HubConnection connection);
@@ -40,6 +41,11 @@ namespace _src.Code.Network.Controllers
         public void RegisterEntryLogic(IEntryLogic logic)
         {
             _entryLogic = logic;
+        }
+        
+        public void RegisterGameLogic(IGameLogic logic)
+        {
+            _gameLogic = logic;
         }
         
         // Handle Error

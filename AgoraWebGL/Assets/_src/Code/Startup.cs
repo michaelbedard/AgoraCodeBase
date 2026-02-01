@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using _src.Code.Core.Interfaces.Handlers;
+using _src.Code.Core.Interfaces.Logic;
 using _src.Code.Core.Interfaces.Proxies;
 using _src.Code.Core.Interfaces.Services;
 using _src.Code.Core.Signals.Other;
@@ -76,13 +76,19 @@ namespace _src.Code
             
             _audioService.SetBackgroundMusicVolume(50);
             _audioService.SetSoundEffectsVolume(50);
+            
+            #if UNITY_EDITOR
+            
+            _audioService.SetBackgroundMusicVolume(0);
+                
+            #endif
         }
 
         private async Task Login()
         {
             #if UNITY_EDITOR
             
-            await _appLogic.Login("001", "mock_jade2");
+            await _appLogic.Login("001", "mock_jade");
             
             #endif
         }

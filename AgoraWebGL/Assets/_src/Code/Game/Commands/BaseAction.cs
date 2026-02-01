@@ -1,3 +1,4 @@
+using _src.Code.Core.Actors;
 using _src.Code.Core.Interfaces.Services;
 using _src.Code.Core.Signals.Game;
 using Agora.Core.Dtos.Game.Commands;
@@ -9,6 +10,8 @@ namespace _src.Code.Game.Commands
         where TAction : CommandDto
         where TAnimation : TAction
     {
+        protected IClientDataService ClientDataService => ServiceLocator.GetService<IClientDataService>();
+        
         [Inject]
         protected BaseAction(SignalBus signalBus, IAnimationQueueService animationQueueService, IGameModuleService gameModuleService) 
             : base(signalBus, animationQueueService, gameModuleService)

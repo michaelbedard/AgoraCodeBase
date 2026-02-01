@@ -30,9 +30,6 @@ namespace _src.Code.Game.Factories
             if (!string.IsNullOrWhiteSpace(loadData.BackImage))
                 card.Model.BackImage.sprite = await Addressables.LoadAssetAsync<Sprite>(loadData.BackImage).Task;
             
-            if (!string.IsNullOrWhiteSpace(loadData.Text))
-                card.Model.Text.text = loadData.Text;
-            
             card.CanBeClick = false;
 
             return card;

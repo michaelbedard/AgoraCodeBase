@@ -3,6 +3,7 @@ using Agora.Core.Payloads.Http.Lobby;
 using Agora.Core.Payloads.Hubs;
 using Application.Handlers.Game.ExecuteAction;
 using Application.Handlers.Game.ExecuteInput;
+using Application.Handlers.Game.ReadyToStart;
 using Application.Handlers.Lobby.LaunchGame;
 using Application.Handlers.Lobby.SelectGame;
 
@@ -38,9 +39,15 @@ public partial class HubController
         await SendErrorIfNotSuccessful(result);
     }
     
-    public async Task SetIsReadyToStart(ExecuteActionPayload payload)
+    public async Task ReadyToStart()
     {
-        // TODO
+        var request = new ReadyToStartRequest()
+        {
+            User = GetClientFromConnection(),
+        };
+        
+        var result = await _mediator.Send(request);
+        await SendErrorIfNotSuccessful(result);
     }
     
     /// <summary>

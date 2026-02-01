@@ -1,5 +1,6 @@
 using _src.Code.Core.Actors;
 using _src.Code.Core.Interfaces.UI;
+using _src.Code.UI.Common;
 using UnityEngine.UIElements;
 
 namespace _src.Code.UI.Scenes.Game
@@ -7,18 +8,24 @@ namespace _src.Code.UI.Scenes.Game
     public class Description : CustomVisualElement, IVisualElement
     {
         public new class UxmlFactory : UxmlFactory<Description, UxmlTraits> { }
-        public string Path => "Assets/_src/UI/Popups/DescriptionPopup.uxml";
 
-        public string Title;
-        public string Content;
+        private Label _title;
+        private Label _content;
+        
+        public VisualElement Container { get; private set; } 
         
         protected override void InitializeCore()
         {
-            // Title = Get<Title>();
-            // Content = Get<Label>("Description");
-            //
-            // Title.Label.text = "WarningPopup";
-            // Content.text = "Message";
+            Container = Get("Container"); 
+            
+            _title = Get<Label>("Title");
+            _content = Get<Label>("Content");
+        }
+
+        public void Setup(string title, string content)
+        {
+            _title.text = title;
+            _content.text = content;
         }
     }
 }

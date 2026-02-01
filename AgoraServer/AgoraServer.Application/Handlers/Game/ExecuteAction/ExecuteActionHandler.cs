@@ -30,7 +30,7 @@ public class ExecuteActionHandler : BaseHandler<ExecuteActionRequest, Result>
         ///////////////////////////////////////////////////////////////////////////
 
         var gameEngine = user.Lobby.GameEngine;
-        gameEngine.ExecuteAction(user.Username, request.ActionId);
+        gameEngine.ExecuteAction(user.Id, request.ActionId);
 
         return Result.Success();
     }

@@ -26,6 +26,7 @@ public class AuthController : BaseApiController
         var command = new LoginRequest
         {
             OAuthCode = loginPayload.OAuthCode,
+            ChannelId = loginPayload.ChannelId,
         };
         
         var result = await _mediator.Send(command);

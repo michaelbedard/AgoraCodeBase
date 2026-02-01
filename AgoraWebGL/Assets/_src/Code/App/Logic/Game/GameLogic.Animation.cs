@@ -6,19 +6,19 @@ namespace _src.Code.App.Logic.Game
     {
         public async Task PlayAnimation(string username)
         {
-            if (!_gameDataService.PlayerUsernameToGameModuleId.ContainsKey(username))
-            {
-                return;
-            }
+            // if (!_clientDataService.PlayerUsernameToGameModuleId.ContainsKey(username))
+            // {
+            //     return;
+            // }
+            //
+            // var gameModuleId = _clientDataService.PlayerUsernameToGameModuleId[username];
+            // var gameModule = _gameModuleService.GetGameModuleById(gameModuleId);
 
-            var gameModuleId = _gameDataService.PlayerUsernameToGameModuleId[username];
-            var gameModule = _gameModuleService.GetGameModuleById(gameModuleId);
-
-            if (gameModuleId == _gameDataService.PlayerId)
-            {
-                // It's the local player, so do not trigger (assume handled locally)
-                return;
-            }
+            // if (gameModuleId == _clientDataService.PlayerId)
+            // {
+            //     // It's the local player, so do not trigger (assume handled locally)
+            //     return;
+            // }
 
             // if (gameModule is IPlayer player)
             // {

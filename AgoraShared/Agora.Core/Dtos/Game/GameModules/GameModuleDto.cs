@@ -7,7 +7,8 @@ public abstract class GameModuleDto
 {
     public string Id { get; set; }
     public string Name { get; set; }
-    public GameModuleType Type { get; set; }
     public Position? Position { get; set; }
-    public bool IsPlayerModule { get; set; }
+    public string? OwnerId { get; set; }
+    
+    public abstract GameModuleType Type { get; }
 }

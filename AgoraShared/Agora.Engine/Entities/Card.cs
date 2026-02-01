@@ -11,10 +11,8 @@ public class Card: CardDto, IGameModule
         {
             Id = Id,
             Name = Name,
-            Type = Type,
             FrontImage = FrontImage,
             BackImage = BackImage,
-            Text = Text,
         };
     }
     

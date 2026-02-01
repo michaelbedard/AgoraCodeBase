@@ -57,7 +57,11 @@ public class LoginHandler : IRequestHandler<LoginRequest, Result<UserDto>>
         }
 
         // 3. Convert to your internal RuntimeUser
-        var runtimeUser = new RuntimeUser(discordUser.Id, discordUser.Username);
+        var runtimeUser = new RuntimeUser(discordUser.Id, discordUser.Username)
+        {
+            ChannelId = request.ChannelId,
+            Avatar = GetBestAvatar(request.ChannelId)
+        };
 
         // 4. Store in Session Service (So they are "Logged In")
         var sessionResult = _sessionService.AddSession(runtimeUser);
@@ -67,19 +71,36 @@ public class LoginHandler : IRequestHandler<LoginRequest, Result<UserDto>>
             return Result<UserDto>.Failure("Failed to create session: " + sessionResult.Error);
         }
 
-        // 5. Return success to the client
         return Result<UserDto>.Success(runtimeUser.ToUserDto());
     }
-    
-    // private
-    private Guid GenerateGuidFromDiscordId(string discordId)
+
+    private int GetBestAvatar(string channelId)
     {
-        // Hashing the Discord ID to get a consistent GUID
-        using (var md5 = System.Security.Cryptography.MD5.Create())
+        var allChannelUsers = _sessionService.GetAllSessions().Where(u => u.ChannelId == channelId).ToList();
+
+        int[] avatarCounts = new int[4]; // Initializes to [0, 0, 0, 0]
+
+        foreach (var user in allChannelUsers)
         {
-            var hash = md5.ComputeHash(System.Text.Encoding.Default.GetBytes(discordId));
-            return new Guid(hash);
+            if (user.Avatar >= 0 && user.Avatar < 4)
+            {
+                avatarCounts[user.Avatar]++;
+            }
         }
+
+        int bestAvatar = 0;
+        int minCount = int.MaxValue;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (avatarCounts[i] < minCount)
+            {
+                minCount = avatarCounts[i];
+                bestAvatar = i;
+            }
+        }
+
+        return bestAvatar;
     }
 }
 

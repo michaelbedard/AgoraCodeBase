@@ -27,7 +27,7 @@ namespace _src.Code.App.Services
         private UIDocument _additiveUiDocument;
         
         // other
-        private const int ShowOrHideAnimationDurationMs = 150;
+        private const int ShowOrHideAnimationDurationMs = 100;
         
         [Inject]
         public VisualElementService(DiContainer container, UIConfig uiConfig)

@@ -45,9 +45,6 @@ public class GameService : IGameService
         lobby.GameEngine.OnEndGame += async (endPayload) => await HandleGameEnd(lobby, endPayload);
         lobby.GameEngine.OnError += async (msg) => await StopGameAsync(lobby, msg);
 
-        // 2. Broadcast Start
-        await _gameProxy.BroadcastStartGameAsync(lobby.Id);
-
         // 3. Start Logic
         lobby.GameEngine.StartGame();
 
@@ -74,10 +71,10 @@ public class GameService : IGameService
 
     private async Task HandleGameUpdate(Lobby lobby, Dictionary<string, UpdateGamePayload> updates)
     {
-        foreach (var (username, payload) in updates)
+        foreach (var (id, payload) in updates)
         {
             // Use _sessionManager here
-            var userResult = _sessionService.GetSessionByUsername(username);
+            var userResult = _sessionService.GetSessionById(id);
             
             if (!userResult.IsSuccess) continue; // User might have disconnected
 

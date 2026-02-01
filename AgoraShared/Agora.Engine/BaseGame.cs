@@ -40,8 +40,16 @@ public abstract partial class BaseGame : IGame
         ResetAllowedActions();
         ResetAnimations();
 
-        List<IGameModule> serverModules = Setup();
-        List<GameModuleDto> clientModules = AssignIdsAndConvert(serverModules);
+        var serverModules = Setup();
+        var clientModules = AssignIdsAndConvert(serverModules);
+        var playerIdToSeat = new Dictionary<string, int>();
+
+        var currentSeat = 0;
+        foreach (var player in Players)
+        {
+            playerIdToSeat.Add(player.Id, currentSeat);
+            currentSeat++;
+        }
         
         return new LoadGamePayload()
         {
@@ -49,8 +57,9 @@ public abstract partial class BaseGame : IGame
             RulesAddress = RulesAddress,
             MusicAddress = MusicAddress,
             EnvironmentAddress = EnvironmentAddress,
-            GameModules = clientModules,
             Players = players,
+            GameModules = clientModules,
+            PlayerIdToSeat = playerIdToSeat
         };
     }
 

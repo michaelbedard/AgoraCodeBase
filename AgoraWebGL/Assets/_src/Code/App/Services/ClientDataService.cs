@@ -1,4 +1,11 @@
+using System.Collections.Generic;
+using _src.Code.Core.Interfaces.GameModules;
+using _src.Code.Core.Interfaces.GameModules.Other;
 using _src.Code.Core.Interfaces.Services;
+using _src.Code.UI.Common;
+using Agora.Core.Dtos;
+using Agora.Core.Enums;
+using Agora.Core.Payloads.Hubs;
 using Zenject;
 
 namespace _src.Code.App.Services
@@ -22,15 +29,23 @@ namespace _src.Code.App.Services
         public string Email { get; set; } = "";
         public int AvatarId { get; set; } = 2;
         public int Pronouns { get; set; } = 0;
+        public string ChannelId { get; set; } = string.Empty;
 
         // audio
         public float MusicVolume { get; set; } = 0f;
         public float SoundEffectVolume { get; set; } = 0f;
 
         // lobby
-        public string ChannelId { get; set; } = string.Empty;
         public string LobbyId { get; set; } = string.Empty;
+        public List<UserDto> UsersInLobby { get; set; } = new();
         
+        // Game
+        public GameKey GameKey { get; set; }
+        public string GameTitle { get; set; }
+        public string RulesAddresses { get; set; }
+        public List<UserDto> Players { get; set; } = new();
+        public Dictionary<string, IHand> PlayerIdToHand { get; set; } = new();
+
 
         /// <summary>
         /// ResetProfileData
@@ -44,6 +59,13 @@ namespace _src.Code.App.Services
             Email = string.Empty;
             AvatarId = 0;
             Pronouns = 0;
+        }
+
+        public void LoadGameData(LoadGamePayload payload)
+        {
+            GameTitle = payload.Title;
+            RulesAddresses = payload.RulesAddress;
+            Players = payload.Players;
         }
     }
 }

@@ -7,7 +7,7 @@ public interface IGameModule
 {
     public string Id { get; set; }
     public string Name { get; set; }
-    public GameModuleType Type { get; set; }
+    public GameModuleType Type { get; }
     
     public GameModuleDto ToDto();
 }

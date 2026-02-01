@@ -8,7 +8,7 @@ import {
     ButtonBuilder,
     ButtonStyle,
     VoiceChannel,
-    InviteTargetType
+    InviteTargetType, GuildMember
 } from "discord.js";
 import {games} from "../../stores/GameStore";
 
@@ -49,7 +49,6 @@ export default {
             const gameChannel = await interaction.guild.channels.create({
                 name: `🎮・${game.title}`,
                 type: ChannelType.GuildVoice,
-                // parent: interaction.channel?.parentId,
                 parent: "1457015111939260436",
                 permissionOverwrites: [
                     {
@@ -61,7 +60,7 @@ export default {
 
             // 3. Create the Activity Invite (The "Magic Link")
             const invite = await gameChannel.createInvite({
-                targetApplication: game.AppId,
+                targetApplication: "1456389795264729150",
                 targetType: InviteTargetType.EmbeddedApplication,
                 maxAge: 3600, // 1 hour
                 maxUses: 0,   // Unlimited

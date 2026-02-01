@@ -62,27 +62,27 @@ public class GameEngine
         BroadcastGameState();
     }
 
-    public void ExecuteAction(string playerUsername, int actionCommandId)
+    public void ExecuteAction(string playerId, int actionCommandId)
     {
-        if (!_activeGame.CanPerformAction(playerUsername, actionCommandId)) 
+        if (!_activeGame.CanPerformAction(playerId, actionCommandId)) 
         {
             OnError?.Invoke("Invalid Action Attempted");
             return;
         }
 
-        _activeGame.ExecuteAction(playerUsername, actionCommandId);
+        _activeGame.ExecuteAction(playerId, actionCommandId);
         BroadcastGameState();
     }
 
-    public void ExecuteInput(string playerUsername, int inputCommandId, object answer)
+    public void ExecuteInput(string playerId, int inputCommandId, object answer)
     {
-        if (!_activeGame.CanExecuteInput(playerUsername, inputCommandId))
+        if (!_activeGame.CanExecuteInput(playerId, inputCommandId))
         {
             OnError?.Invoke("Invalid Input Attempted");
             return;
         }
         
-        _activeGame.ExecuteInput(playerUsername, inputCommandId, answer);
+        _activeGame.ExecuteInput(playerId, inputCommandId, answer);
         BroadcastGameState();
     }
     

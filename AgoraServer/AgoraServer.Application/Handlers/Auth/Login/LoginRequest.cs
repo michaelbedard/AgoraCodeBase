@@ -6,4 +6,5 @@ namespace Application.Handlers.Auth.Login;
 public class LoginRequest : BaseRequest<Result<UserDto>>
 {
     public string OAuthCode { get; set; }
+    public string ChannelId { get; set; }
 }

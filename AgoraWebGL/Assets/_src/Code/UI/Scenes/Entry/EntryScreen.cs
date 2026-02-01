@@ -2,7 +2,6 @@ using System;
 using _src.Code.Core.Actors;
 using _src.Code.Core.Interfaces.UI;
 using _src.Code.UI.Common;
-using _src.Code.UI.Common.IconButtons;
 using UnityEngine.UIElements;
 
 namespace _src.Code.UI.Scenes.Entry

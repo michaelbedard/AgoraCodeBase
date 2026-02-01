@@ -4,13 +4,8 @@ using Agora.Core.Payloads.Hubs;
 
 namespace _src.Code.Core.Interfaces.Proxies
 {
-    public interface IHubProxy
+    public interface IHubProxy : IGameHubProxy, ILobbyHubProxy
     {
         Task<bool> ConnectAsync();
-
-        Task SelectGame(SelectGamePayload payload);
-        Task LaunchGame(LaunchGamePayload payload);
-        Task ExecuteAction(ExecuteActionPayload payload);
-        Task ExecuteInput(ExecuteInputPayload payload);
     }
 }

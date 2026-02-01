@@ -1,20 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using System.Linq.Expressions;
-using System;
+using System.Threading.Tasks;
 using _src.Code.Core;
 using _src.Code.Core.Interfaces.Proxies;
 using _src.Code.Core.Interfaces.Services;
-using _src.Code.Network.Controllers;
+using _src.Code.Core.Utility;
 using Agora.Core.Contracts.Server;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Logging;
-using Zenject;
-using UnityEngine;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using UnityEngine;
+using Zenject;
 
-namespace _src.Code.Network.HubProxies
+namespace _src.Code.Network.HubProxy
 {
     // Use the Union Interface we discussed earlier
     public partial class HubProxy : IHubProxy

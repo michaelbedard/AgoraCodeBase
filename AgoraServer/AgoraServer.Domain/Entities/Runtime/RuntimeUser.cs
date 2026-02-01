@@ -10,17 +10,12 @@ public class RuntimeUser
     public int Avatar { get; set; }
     public int Pronouns { get; set; }
     public Language[] Languages { get; set; }
-    public bool IsBot { get; set; }
+    public string ChannelId { get; set; }
     public string ConnectionId { get; set; }
-    
-    // duo
-    public RuntimeUser? Duo { get; set; }
 
     // game
-    public bool IsInSearch { get; set; } 
+    public bool IsBot { get; set; }
     public Lobby? Lobby { get; set; }
-    
-    public List<RuntimeUser> PreviousPlayers { get; set; }
     
     
     public RuntimeUser(string id, string username)
@@ -29,9 +24,8 @@ public class RuntimeUser
         Username = username;
         Avatar = 0;
         Pronouns = 0;
-        Duo = null;
         Lobby = null;
+        ChannelId = string.Empty;
         ConnectionId = string.Empty;
-        PreviousPlayers = new List<RuntimeUser>();
     }
 }

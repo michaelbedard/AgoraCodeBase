@@ -11,12 +11,6 @@ public partial class HubProxy
         await _hubContext.Clients.Group(groupId).LoadGame(payload);
     }
 
-    public async Task BroadcastStartGameAsync(string groupId)
-    {
-        LogGroupCall(nameof(BroadcastStartGameAsync), groupId, null);
-        await _hubContext.Clients.Group(groupId).StartGame();
-    }
-
     public async Task UpdateGameAsync(RuntimeUser user, UpdateGamePayload payload)
     {
         LogCall(nameof(UpdateGameAsync), user.Username, payload);

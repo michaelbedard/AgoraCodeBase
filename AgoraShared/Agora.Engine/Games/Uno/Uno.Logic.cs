@@ -1,4 +1,5 @@
-﻿using Agora.Engine.Commands.Actions;
+﻿using Agora.Core.Dtos.Game.Commands.Actions;
+using Agora.Engine.Commands.Actions;
 
 namespace Agora.Engine.Games.Uno;
 
@@ -46,7 +47,8 @@ public partial class Uno
             {
                 if (IsValidMove(card, topCard))
                 {
-                    Allow(new PlayCard(currentPlayer, card, _discardPile));
+                    Allow(new PlayCard(currentPlayer, card));
+                    Allow(new PlayCardInsideZone(currentPlayer, card, _discardPile));
                 }
             }
 
@@ -54,7 +56,14 @@ public partial class Uno
             var actionTaken = await WaitForNextActionAsync();
 
             // --- STEP C: RESOLVE EFFECTS ---
-            if (actionTaken is PlayCard playAction && playAction.Card is UnoCard playedCard)
+            var playedCard = actionTaken switch
+            {
+                PlayCard p => p.Card as UnoCard,
+                PlayCardInsideZone pz => pz.Card as UnoCard,
+                _ => null
+            };
+            
+            if (playedCard != null)
             {
                 _activeColor = playedCard.Color;
                 

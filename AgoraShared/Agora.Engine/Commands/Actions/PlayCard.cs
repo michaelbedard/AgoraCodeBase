@@ -8,12 +8,10 @@ namespace Agora.Engine.Commands.Actions;
 public class PlayCard : BaseGameAction
 {
     public Card Card;
-    public Zone? Zone;
 
-    public PlayCard(Player player, Card card, Zone? zone = null) : base(player)
+    public PlayCard(Player player, Card card) : base(player)
     {
         Card = card;
-        Zone = zone;
     }
     
     public override GameActionResult Execute()
@@ -21,13 +19,11 @@ public class PlayCard : BaseGameAction
         var result = new GameActionResult();
         
         Player.Hand.Remove(Card);
-        Zone?.Cards.Add(Card);
 
         result.SendToAll(new PlayCardAnimationDto()
         {
             PlayerId = Player.Id,
             CardId = Card.Id,
-            ZoneId = Zone?.Id,
         });
 
         return result;
@@ -37,8 +33,8 @@ public class PlayCard : BaseGameAction
     {
         return new PlayCardActionDto()
         {
+            PlayerId = Player.Id,
             CardId = Card.Id,
-            ZoneId = Zone?.Id,
         };
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using _src.Code.Core.Actors;
+using _src.Code.Core.Interfaces.Logic;
 using _src.Code.UI.Shared;
 using Agora.Core.Payloads.Http.Auth;
 
@@ -13,7 +15,7 @@ namespace _src.Code.App.Logic
             var result = await _authHttpProxy.Login(new LoginPayload()
             {
                 OAuthCode = authCode,
-                LobbyId = currentChannelId,
+                ChannelId = currentChannelId,
             });
             
             if (result.IsSuccess)
@@ -40,6 +42,8 @@ namespace _src.Code.App.Logic
                 popup.Message.text = result.Data.Username + "\n" + _clientDataService.Id + "\n" + _clientDataService.ChannelId;
                 popup.Button.Label.text = "Ok";
                 popup.Show();
+
+                await ServiceLocator.GetService<IEntryLogic>().DisplayAvatar();
             }
             else
             {

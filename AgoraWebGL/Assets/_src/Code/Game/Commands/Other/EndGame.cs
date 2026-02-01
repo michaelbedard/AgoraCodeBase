@@ -13,7 +13,6 @@ namespace _src.Code.Game.Commands.Other
 {
     public class EndGame : BaseAnimation<EndCommandDto>
     {
-        private readonly IGameDataService _gameDataService;
         private readonly IVisualElementService _visualElementService;
         private readonly ICharacterService _characterService;
         private readonly ICameraPlaneService _cameraPlaneService;
@@ -22,13 +21,11 @@ namespace _src.Code.Game.Commands.Other
             SignalBus signalBus, 
             IAnimationQueueService animationQueueService, 
             IGameModuleService gameModuleService, 
-            IGameDataService gameDataService,
             IVisualElementService visualElementService,
             ICharacterService characterService,
             ICameraPlaneService cameraPlaneService) 
             : base(signalBus, animationQueueService, gameModuleService)
         {
-            _gameDataService = gameDataService;
             _visualElementService = visualElementService;
             _characterService = characterService;
             _cameraPlaneService = cameraPlaneService;

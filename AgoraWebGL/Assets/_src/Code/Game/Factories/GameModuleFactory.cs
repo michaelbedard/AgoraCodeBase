@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using _src.Code.Core.Actors;
 using _src.Code.Core.Interfaces.GameModules;
+using _src.Code.Core.Interfaces.Services;
 using _src.Code.Core.Utility.MVC;
 using _src.Code.Game.Modules;
 using _src.Code.Game.Modules.Card;
@@ -19,10 +21,10 @@ namespace _src.Code.Game.Factories
         where TDto : GameModuleDto, new()
         where TIModule : IBaseController
     {
-        private readonly DiContainer _container;
-        private readonly GameObject _prefab;
+        protected IGameModuleService GameModuleService => ServiceLocator.GetService<IGameModuleService>();
 
-        protected GameModuleFactory(DiContainer container, GameObject prefab) : base(container, prefab)
+        protected GameModuleFactory(DiContainer container, GameObject prefab) 
+            : base(container, prefab)
         {
         }
 

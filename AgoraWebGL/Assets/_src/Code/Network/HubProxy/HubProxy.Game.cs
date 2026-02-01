@@ -3,7 +3,7 @@ using Agora.Core.Contracts.Server;
 using Agora.Core.Payloads.Http.Lobby;
 using Agora.Core.Payloads.Hubs;
 
-namespace _src.Code.Network.HubProxies
+namespace _src.Code.Network.HubProxy
 {
     public partial class HubProxy : IGameServerContract
     {
@@ -16,7 +16,12 @@ namespace _src.Code.Network.HubProxies
         {
             await InvokeAsync(e => e.LaunchGame(payload));
         }
-        
+
+        public async Task ReadyToStart()
+        {
+            await InvokeAsync(e => e.ReadyToStart());
+        }
+
         public async Task ExecuteAction(ExecuteActionPayload payload)
         {
             await InvokeAsync(e => e.ExecuteAction(payload));

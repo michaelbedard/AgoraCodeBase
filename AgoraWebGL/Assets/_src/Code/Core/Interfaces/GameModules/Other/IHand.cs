@@ -7,9 +7,11 @@ namespace _src.Code.Core.Interfaces.GameModules.Other
     {
         // Properties
         string PlayerId { get; set; }
+        string Description { get; set; }
         ICard CardBeingDrag { get; set; }
 
         // Methods
+        void SetGameObjectName(string gameObjectName);
         void AddCard(ICard card, int index);
         int RemoveCard(ICard card);
         bool Contains(ICard card);

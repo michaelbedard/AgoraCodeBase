@@ -13,6 +13,9 @@ namespace _src.Code.Game.Commands.GameActions
     public class DrawCard : BaseAction<DrawCardActionDto, DrawCardAnimationDto>
     {
         [Inject]
+        private IClientDataService ClientDataService { get; set; }
+        
+        [Inject]
         public DrawCard(SignalBus signalBus, IAnimationQueueService animationQueueService, IGameModuleService gameModuleService) 
             : base(signalBus, animationQueueService, gameModuleService)
         {
@@ -45,18 +48,19 @@ namespace _src.Code.Game.Commands.GameActions
                 Debug.Log($"Card positionned");
             
                 // add card to the hand and animate
-                // player.Hand.AddCard(card, 0);
+                var hand = ClientDataService.PlayerIdToHand[animation.PlayerId];
+                hand.AddCard(card, 0);
                 
                 Debug.Log($"Card added to hand");
                 
                 // sound
                 AudioService.PlaySoundEffectAsync(Globals.Instance.audioClipDrawingCard);
                 
-                // player.Hand.UpdateCardPositions().OnComplete(() =>
-                // {
-                //     Debug.Log($"completed");
-                //     AnimationQueueService.Next();
-                // });
+                hand.UpdateCardPositions().OnComplete(() =>
+                {
+                    Debug.Log($"completed");
+                    AnimationQueueService.Next();
+                });
             });
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System;
-using _src.Code.Core.Interfaces.Handlers;
+using _src.Code.Core.Interfaces.Logic;
 using _src.Code.Core.Interfaces.Proxies;
 using _src.Code.Core.Interfaces.Services;
 using UnityEngine.UIElements;

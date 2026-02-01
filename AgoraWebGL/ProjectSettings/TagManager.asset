@@ -41,3 +41,45 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CardsOnBoard
+    uniqueID: 1233978909
+    locked: 0
+  - name: CardsInZone
+    uniqueID: 4112066741
+    locked: 0
+  - name: ZoneTopCard
+    uniqueID: 1854732041
+    locked: 0
+  - name: CardsInHand_9
+    uniqueID: 410360907
+    locked: 0
+  - name: CardsInHand_8
+    uniqueID: 2232803967
+    locked: 0
+  - name: CardsInHand_7
+    uniqueID: 4166865565
+    locked: 0
+  - name: CardsInHand_6
+    uniqueID: 3210594467
+    locked: 0
+  - name: CardsInHand_5
+    uniqueID: 1897235029
+    locked: 0
+  - name: CardsInHand_4
+    uniqueID: 1076201819
+    locked: 0
+  - name: CardsInHand_3
+    uniqueID: 3313328413
+    locked: 0
+  - name: CardsInHand_2
+    uniqueID: 3082412115
+    locked: 0
+  - name: CardsInHand_1
+    uniqueID: 584297133
+    locked: 0
+  - name: CardsInHand_0
+    uniqueID: 3969794213
+    locked: 0
+  - name: AboveEverything
+    uniqueID: 3176695179
+    locked: 0

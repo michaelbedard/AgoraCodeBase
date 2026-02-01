@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using _src.Code.Core.Interfaces.Handlers;
+using _src.Code.Core.Interfaces.Logic;
 using _src.Code.Core.Interfaces.Services;
 using UnityEngine;
 using Zenject;

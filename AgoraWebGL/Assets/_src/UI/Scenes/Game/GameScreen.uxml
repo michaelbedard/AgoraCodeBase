@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Description" src="project://database/Assets/_src/UI/Scenes/Game/Description.uxml?fileID=9197481963319205126&amp;guid=b18ad40c24d4fd346b0bcf951119d608&amp;type=3#Description" />
+    <Style src="project://database/Assets/_src/UI/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=9898bfa598e1bb94287380fc33c9d753&amp;type=3#GlobalStyles" />
+    <_src.Code.UI.Scenes.Game.GameScreen picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:VisualElement name="LoadingView" focusable="false" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-color: rgb(0, 72, 106); background-image: url(&quot;project://database/Assets/_src/Sprites/Panels/popup_bg_03.png?fileID=21300000&amp;guid=2b87e69b1a02a004d805b4599d641474&amp;type=3#popup_bg_03&quot;); align-items: center; justify-content: center; display: flex; visibility: visible;">
+            <ui:Label tabindex="-1" text="Loading ..." parse-escape-sequences="true" display-tooltip-when-elided="true" class="text-large text" />
+        </ui:VisualElement>
+        <ui:VisualElement name="EndGameView" focusable="false" style="flex-grow: 1; display: flex;" />
+    </_src.Code.UI.Scenes.Game.GameScreen>
+    <ui:Instance template="Description" name="Description" picking-mode="Ignore" focusable="false" style="position: absolute; width: 100%; height: 100%;" />
+</ui:UXML>

@@ -45,7 +45,7 @@ export default {
             const infoEmbed = new EmbedBuilder()
                 .setColor(0xE74C3C)
                 .setTitle(`🎲 ${game.title}`)
-                .setDescription(game.description) // Short description only
+                .setDescription(game.description)
                 .setThumbnail(game.thumbnail)
                 .addFields(
                     { name: '👥 Players', value: `${game.minPlayers}-${game.maxPlayers}`, inline: true },
@@ -59,10 +59,10 @@ export default {
         // --- MODE B: RULES ---
         if (subcommand === 'rules') {
             const rulesEmbed = new EmbedBuilder()
-                .setColor(0xFFFFFF) // White looks like a piece of paper/manual
+                .setColor(0xFFFFFF)
                 .setTitle(`📜 Rules: ${game.title}`)
-                .setDescription(game.rules) // The full text
-                .setFooter({ text: 'Tip: Use Ctrl+F to find specific keywords.' });
+                .setDescription(game.rules)
+                .setFooter({ text: 'have fun!' });
 
             return interaction.reply({
                 embeds: [rulesEmbed],

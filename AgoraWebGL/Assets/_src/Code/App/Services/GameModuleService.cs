@@ -36,20 +36,12 @@ namespace _src.Code.App.Services
         [Inject]
         public GameModuleService(
             ICardFactory cardFactory, 
-            ICounterFactory counterFactory, 
             IDeckFactory deckFactory,
-            IZoneFactory zoneFactory,
-            ITokenFactory tokenFactory,
-            IDiceFactory diceFactory,
-            IMarkerFactory markerFactory)
+            IZoneFactory zoneFactory)
         {
             _cardFactory = cardFactory;
-            _counterFactory = counterFactory;
             _deckFactory = deckFactory;
             _zoneFactory = zoneFactory;
-            _tokenFactory = tokenFactory;
-            _diceFactory = diceFactory;
-            _markerFactory = markerFactory;
             
             _idToGameModule = new Dictionary<string, IBaseGameModule>();
             _inputObjectToGameModule = new Dictionary<InputObject, IBaseGameModule>();
