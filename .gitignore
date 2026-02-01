@@ -37,8 +37,8 @@ dump.rdb
 #           SECRETS & ENVIRONMENT
 # ==========================================
 # Keys
-service-account-dev.json
-service-account-prod.json
+# service-account-dev.json
+# service-account-prod.json
 .pem
 
 # Environment variables
